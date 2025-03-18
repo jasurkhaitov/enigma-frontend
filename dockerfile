@@ -20,7 +20,7 @@ RUN npm run build
 RUN npm install -g serve
 
 # Expose the port for the static file server
-EXPOSE 4173
+EXPOSE 5173
 
 # Serve the built files
-CMD ["serve", "-s", "dist", "-l", "4173"]
+CMD ["serve", "-s", "dist", "-l", "5173"]

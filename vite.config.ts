@@ -17,12 +17,13 @@ export default defineConfig({
 		},
 	},
 	preview: {
-		port: 3000,
+		port: 5173,
 		strictPort: true,
 		host: '0.0.0.0',
 		allowedHosts: true,
 	},
 	server: {
+		port: 5173,
 		allowedHosts: true,
 	},
 })
