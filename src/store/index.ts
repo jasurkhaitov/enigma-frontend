@@ -5,7 +5,7 @@ import authReducer from '@/reducer/authSlice'
 import languageReducer from '@/reducer/languageSlice'
 import multipleFileReducer from '@/reducer/fileSlice'
 
-import { authApi } from '@/service/api'
+import { authApi } from '@/service/authApi'
 import { jobsApi } from '@/service/jobsApi'
 
 export const store = configureStore({

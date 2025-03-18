@@ -1,38 +1,40 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAppSelector } from '@/store'
+import { useAppSelector } from '../store'
 import { useEffect, useState } from 'react'
 import { useRefreshAuth } from '@/service/refreshAuth'
-import { Loader } from 'lucide-react'
 
 const ProtectedRoute = () => {
-	const accessToken = useAppSelector(state => state.auth.accessToken)
+	const { accessToken } = useAppSelector(state => state.auth)
+	const [isLoading, setIsLoading] = useState(true)
+	const [isAuthenticated, setIsAuthenticated] = useState(false)
 	const { refreshAccessToken } = useRefreshAuth()
-	const [isAuthChecked, setIsAuthChecked] = useState(false)
-	const [isValidToken, setIsValidToken] = useState(!!accessToken)
 
 	useEffect(() => {
-		const checkAuth = async () => {
-			if (!accessToken) {
-				const { success } = await refreshAccessToken()
-				setIsValidToken(success)
-			} else {
-				setIsValidToken(true)
+		const checkAuthentication = async () => {
+			if (accessToken) {
+				setIsAuthenticated(true)
+				setIsLoading(false)
+				return
 			}
-			setIsAuthChecked(true)
+
+			const { success } = await refreshAccessToken()
+
+			setIsAuthenticated(success)
+			setIsLoading(false)
 		}
 
-		checkAuth()
+		checkAuthentication()
 	}, [accessToken, refreshAccessToken])
 
-	if (!isAuthChecked) {
-		return (
-			<div className='flex items-center justify-center h-screen'>
-				<Loader className='animate-spin text-primary' size={50} />
-			</div>
-		)
+	if (isLoading) {
+		return <div>Loading...</div>
 	}
 
-	return isValidToken ? <Outlet /> : <Navigate to='/login' replace />
+	if (!isAuthenticated) {
+		return <Navigate to='/login' replace />
+	}
+
+	return <Outlet />
 }
 
 export default ProtectedRoute

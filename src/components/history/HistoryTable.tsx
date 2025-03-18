@@ -108,6 +108,18 @@ export default function HistoryTable({
 		}
 	}, [page, setSearchParams, searchParams, isPageInitialized])
 
+	useEffect(() => {
+		if (isPageInitialized && defaultItemsPerPage !== itemsPerPage) {
+			setItemsPerPage(defaultItemsPerPage)
+
+			const newTotalPages = Math.ceil(totalCount / defaultItemsPerPage)
+
+			if (page > newTotalPages && newTotalPages > 0) {
+				setPage(newTotalPages)
+			}
+		}
+	}, [defaultItemsPerPage, itemsPerPage, totalCount, page, isPageInitialized])
+
 	const handlePageChange = (newPage: number) => {
 		if (newPage >= 1 && newPage <= totalPages && newPage !== page) {
 			setPage(newPage)
@@ -116,7 +128,15 @@ export default function HistoryTable({
 
 	const handleItemsPerPageChange = (newItemsPerPage: number) => {
 		setItemsPerPage(newItemsPerPage)
-		setPage(1)
+
+		const newTotalPages = Math.ceil(totalCount / newItemsPerPage)
+
+		if (page > newTotalPages) {
+			setPage(newTotalPages)
+		} else {
+			setPage(1)
+		}
+
 		onItemsPerPageChange(newItemsPerPage)
 		refetch()
 	}

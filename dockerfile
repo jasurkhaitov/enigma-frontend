@@ -7,14 +7,20 @@ WORKDIR /app
 # Copy package.json and package-lock.json first (for caching dependencies)
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies using `npm ci` for consistency
+RUN npm ci
 
 # Copy the rest of the app files
 COPY . .
 
-# Expose the port Vite runs on
-EXPOSE 5173
+# Build the app for production
+RUN npm run build
 
-# Start the Vite development server
-CMD ["npm", "run", "dev"]
+# Install a lightweight static file server (like serve)
+RUN npm install -g serve
+
+# Expose the port for the static file server
+EXPOSE 4173
+
+# Serve the built files
+CMD ["serve", "-s", "dist", "-l", "4173"]

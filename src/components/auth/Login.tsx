@@ -1,9 +1,9 @@
-import { useLoginMutation } from '@/service/api'
+import { useLoginMutation } from '@/service/authApi'
 import { useAppSelector, useAppDispatch } from '@/store'
 import { Link, useNavigate } from 'react-router-dom'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
-import { setAccessToken, setRefreshToken } from '@/reducer/authSlice'
+import { setAccessToken } from '@/reducer/authSlice'
 import { toast } from 'sonner'
 import { errorMsg } from '@/typescript/type'
 import UsernameField from './fields/UsernameField'
@@ -19,38 +19,30 @@ const Login = () => {
 
 	const handleLogin = async () => {
 		if (!email) {
-			toast.error('Please enter your email address')
+			toast.error('Please enter your username')
 			return
 		}
-
 		if (!password) {
 			toast.error('Please enter your password')
 			return
 		}
-
 		if (emailError) {
-			toast.error(emailError || 'Invalid email format')
+			toast.error(emailError || 'Invalid username format')
 			return
 		}
-
 		if (passwordError) {
 			toast.error(passwordError || 'Invalid password format')
 			return
 		}
-
 		if (!emailError && !passwordError && email && password) {
 			try {
 				const response = await login({ username: email, password }).unwrap()
 				if (response) {
 					toast.success('Login successful !')
-					localStorage.setItem('refreshToken', response.refresh_token)
-
 					dispatch(setAccessToken(response.access_token))
-
-					dispatch(setRefreshToken(response.refresh_token))
-
 					navigate('/')
 				}
+				console.log(response)
 			} catch (error: unknown) {
 				if (typeof error === 'object' && error !== null && 'data' in error) {
 					const err = error as errorMsg
@@ -66,7 +58,6 @@ const Login = () => {
 		<div className='w-full space-y-6 relative'>
 			<UsernameField />
 			<PasswordField />
-
 			<div className='flex items-center justify-between'>
 				<div className='flex items-center gap-2'>
 					<input
@@ -77,11 +68,14 @@ const Login = () => {
 					/>
 					<Label htmlFor='remember-me'>Remember me</Label>
 				</div>
-				<Link to={'/verify'} state={{path: 'login'}} className='font-normal cursor-pointer text-[14px] leading-[16px] tracking-[0%] underline decoration-solid text-checkbox-bg'>
+				<Link
+					to={'/verify'}
+					state={{ path: 'login' }}
+					className='font-normal cursor-pointer text-[14px] leading-[16px] tracking-[0%] underline decoration-solid text-checkbox-bg'
+				>
 					Forgot password?
 				</Link>
 			</div>
-
 			<div className='space-y-2'>
 				<Button
 					onClick={handleLogin}

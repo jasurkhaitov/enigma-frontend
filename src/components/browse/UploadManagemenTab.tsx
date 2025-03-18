@@ -20,35 +20,46 @@ const UploadManagementTab = () => {
 		'main' | 'loader' | 'taskInfo'
 	>('main')
 
-	const { data: taskData, isFetching, refetch } = useGetTaskInformationQuery(taskId!, {
-    skip: !taskId,
-    refetchOnMountOrArgChange: true,
-  });
-  
-  useEffect(() => {
-    if (!taskId) return;
-  
-    setIsUploading(true);
-  
-    const pollTaskStatus = async () => {
-      try {
-        const response = await refetch();
-        const latestData = response.data;
-  
-        if (latestData && (latestData.success === true)) {
-          clearInterval(interval);
-        }
-        
-      } catch (error) {
-        console.error("Error polling task status:", error);
-      }
-    };
-  
-    const interval = setInterval(pollTaskStatus, 1000);
-  
-    return () => clearInterval(interval);
-  }, [taskId, refetch]);  
-  
+	const {
+		data: taskData,
+		isFetching,
+		refetch,
+	} = useGetTaskInformationQuery(taskId!, {
+		skip: !taskId,
+		refetchOnMountOrArgChange: true,
+	})
+
+	useEffect(() => {
+		if (!taskId) return
+
+		setIsUploading(true)
+
+		const pollTaskStatus = async () => {
+			try {
+				const response = await refetch()
+				const latestData = response.data
+
+				if (latestData && latestData.success === true) {
+					setIsUploading(false)
+					clearInterval(interval)
+				} else if (latestData && latestData.success === false) {
+					setIsUploading(false)
+					setIsErrorModalOpen(true)
+					clearInterval(interval)
+				}
+				console.log(latestData)
+			} catch (error) {
+				console.error('Error polling task status:', error)
+				setIsUploading(false)
+				setIsErrorModalOpen(true)
+				clearInterval(interval)
+			}
+		}
+
+		const interval = setInterval(pollTaskStatus, 1000)
+
+		return () => clearInterval(interval)
+	}, [taskId, refetch])
 
 	const handleViewTransition = useCallback(
 		(nextView: 'main' | 'loader' | 'taskInfo') => {
@@ -69,7 +80,7 @@ const UploadManagementTab = () => {
 								setTaskId(null)
 								setTimeout(() => setTransitionState('idle'), 300)
 							}, 200)
-						}, 5000)
+						}, 10000)
 					}
 				}, 300)
 			}, 200)
@@ -156,9 +167,9 @@ const UploadManagementTab = () => {
 					<div className={getTransitionClasses()}>
 						<TaskInformation
 							loading={isFetching}
-							id={taskData.args[2]}
+							id={taskData.args[0].id}
 							time={taskData.enqueue_time}
-							name={taskData.args[0]}
+							name={taskData.args[0].name}
 						/>
 					</div>
 				)}

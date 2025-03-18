@@ -13,6 +13,8 @@ interface JobsTableContentProps {
 export function JobsTableContent({
 	jobsData,
 	statusVariantMap,
+	page,
+	itemsPerPage,
 }: JobsTableContentProps) {
 	const getVariant = (status: string): 'processing' | 'done' | 'failed' => {
 		const lowercaseStatus = status.toLowerCase()
@@ -27,7 +29,9 @@ export function JobsTableContent({
 		<>
 			{jobsData.map((job, idx) => (
 				<TableRow key={job.id} className='text-[16px] font-medium'>
-					<TableCell className='w-[50px] text-gray-text'>{idx + 1}</TableCell>
+					<TableCell className='w-[50px] text-gray-text'>
+						{(page - 1) * itemsPerPage + idx + 1}
+					</TableCell>
 					<TableCell
 						className='w-[200px] max-w-[200px] truncate'
 						title={job.name}

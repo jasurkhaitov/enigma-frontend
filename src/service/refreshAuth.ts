@@ -1,4 +1,4 @@
-import { useRefreshTokenMutation } from '@/service/api'
+import { useRefreshTokenMutation } from '@/service/authApi'
 import { useAppDispatch } from '@/store'
 import { setAccessToken, logout } from '@/reducer/authSlice'
 import { useCallback } from 'react'
@@ -8,20 +8,17 @@ export const useRefreshAuth = () => {
 	const [refreshTokenMutation] = useRefreshTokenMutation()
 
 	const refreshAccessToken = useCallback(async () => {
+		
 		try {
-			const refreshToken = localStorage.getItem('refreshToken')
+			const response = await refreshTokenMutation().unwrap()
+			console.log(response);
 
-			if (!refreshToken) {
-				dispatch(logout())
-				return { success: false }
-			}
-
-			const response = await refreshTokenMutation({ refreshToken }).unwrap()
-			if (response?.access_token) {
+			
+			if (response.access_token) {
 				dispatch(setAccessToken(response.access_token))
 				return { success: true }
 			}
-
+			
 			return { success: false }
 		} catch (error) {
 			console.error('Failed to refresh token:', error)

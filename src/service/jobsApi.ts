@@ -1,49 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '@/store'
+import { GetTaskResponse, JobsResponse, UploadRequest, UploadResponse } from '@/typescript/type'
 
 const BASE_URL: string = import.meta.env.VITE_API_BASE_URL
-
-interface Job {
-	job_id: string
-	master_lang: string
-	slave_lang: string
-	id: string
-	name: string
-	status: string
-	processed_path: string
-}
-
-interface JobsResponse {
-	data: Job[]
-	page: number
-	items_per_page: number
-	total: number
-	total_count: number
-	has_more: boolean
-}
-
-interface UploadRequest {
-	master_lang: string
-	slave_lang: string
-	name: string
-	type: string
-	master_file: File
-	slave_file?: File | null
-}
-
-interface UploadResponse {
-	id: string
-	job_id: string
-	status: string
-}
-
-interface GetTaskResponse {
-	success: boolean
-  status: string
-	args: string[]
-	enqueue_time: string | number | Date
-	id: string
-}
 
 export const jobsApi = createApi({
 	reducerPath: 'jobsApi',

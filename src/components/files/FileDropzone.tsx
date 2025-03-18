@@ -3,6 +3,7 @@ import { Button } from '../ui/button'
 import { toast } from 'sonner'
 import { AlertTriangle, Upload, X } from 'lucide-react'
 import { Icons } from '../ui/icons/IconSvg'
+import { MAX_FILE_SIZE } from '@/typescript/type'
 
 type FileState = File | null
 
@@ -11,8 +12,6 @@ interface FileDropzoneProps {
 	file: FileState
 	setFile: React.Dispatch<React.SetStateAction<FileState>>
 }
-
-const MAX_FILE_SIZE = 200 * 1024 * 1024
 
 const FileDropzone: React.FC<FileDropzoneProps> = ({
 	title,
