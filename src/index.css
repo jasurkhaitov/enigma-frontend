@@ -214,3 +214,8 @@ img {
     opacity: 0;
   }
 }
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

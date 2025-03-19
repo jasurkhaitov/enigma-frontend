@@ -44,6 +44,7 @@ function Input({
 			value={value}
 			onChange={onChange}
 			placeholder={placeholder}
+			autoComplete='off'
 			disabled={disabled}
 			className={`${baseStyles} ${label} ${
 				!disabled && !hasError && !isAlert
