@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { errorMsg } from '@/typescript/type'
 import UsernameField from './fields/UsernameField'
 import PasswordField from './fields/PasswordField'
+import { Loader } from 'lucide-react'
 
 const Login = () => {
 	const dispatch = useAppDispatch()
@@ -42,7 +43,6 @@ const Login = () => {
 					dispatch(setAccessToken(response.access_token))
 					navigate('/')
 				}
-				console.log(response)
 			} catch (error: unknown) {
 				if (typeof error === 'object' && error !== null && 'data' in error) {
 					const err = error as errorMsg
@@ -85,7 +85,7 @@ const Login = () => {
 				>
 					{isLoading ? (
 						<>
-							<center className='mr-1 w-5 animate-spin' />
+							<Loader className='mr-1 w-5 animate-spin' />
 							Logging in...
 						</>
 					) : (

@@ -9,7 +9,9 @@ export type FileState = File | null
 
 export type DragEventHandlers = (event: React.DragEvent<HTMLDivElement>) => void
 
-export type InputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void
+export type InputChangeHandler = (
+	event: React.ChangeEvent<HTMLInputElement>
+) => void
 
 export const MAX_FILE_SIZE = 10 * 1024 * 1024
 
@@ -48,32 +50,32 @@ export interface UploadResponse {
 }
 
 export interface GetTaskResponse {
-	function: string;
-	args: TaskArgument[];
-	kwargs: Record<string, unknown>;
-	job_try: number;
-	enqueue_time: string;
-	score: number | null;
-	success: boolean;
-	result: string;
-	start_time: string;
-	finish_time: string;
-	queue_name: string;
-	job_id: string | null;
+	function: string
+	args: TaskArgument[]
+	kwargs: Record<string, unknown>
+	job_try: number
+	enqueue_time: string
+	score: number | null
+	success: boolean
+	result: string
+	start_time: string
+	finish_time: string
+	queue_name: string
+	job_id: string | null
 }
 
 interface TaskArgument {
-	id: string;
-	user_id: string;
-	job_id: string | null;
-	master_lang: string;
-	slave_lang: string;
-	name: string;
-	status: string | null;
-	task_type: string | null;
-	master_path: string;
-	slave_path: string | null;
-	processed_path: string;
+	id: string
+	user_id: string
+	job_id: string | null
+	master_lang: string
+	slave_lang: string
+	name: string
+	status: string | null
+	task_type: string | null
+	master_path: string
+	slave_path: string | null
+	processed_path: string
 }
 
 export interface LoginRequest {

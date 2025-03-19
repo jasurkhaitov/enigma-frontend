@@ -3,9 +3,8 @@ import ProcessLoader from '../files/ProcessLoader'
 import ErrorModal from '../files/ErrorModal'
 import { useGetTaskInformationQuery } from '@/service/jobsApi'
 import TaskInformation from '../files/TaskInformation'
-import Header from './Header'
-import TabSelector from './TabSelector'
-import UploadContent from './UploadContent'
+import UploadView from './UploadView'
+import TransitionWrapper from './TransitionWrapper'
 
 const UploadManagementTab = () => {
 	const [activeTab, setActiveTab] = useState<'separate' | 'single'>('separate')
@@ -47,13 +46,15 @@ const UploadManagementTab = () => {
 					setIsErrorModalOpen(true)
 					clearInterval(interval)
 				}
-				console.log(latestData)
 			} catch (error) {
-				console.error('Error polling task status:', error)
+				const err = error as { data: { detail: string }; status: number }
+				console.error(`Error: ${err.data.detail} (Status: ${err.status})`)
+			
 				setIsUploading(false)
 				setIsErrorModalOpen(true)
 				clearInterval(interval)
 			}
+				
 		}
 
 		const interval = setInterval(pollTaskStatus, 1000)
@@ -139,39 +140,31 @@ const UploadManagementTab = () => {
 		<>
 			<div className='w-full max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8'>
 				{currentView === 'main' && (
-					<div className={getTransitionClasses()}>
-						<Header
-							title='Compare Text and Word Documents'
-							description='Use our side-by-side document comparison software below to highlight changes'
-						/>
-						<TabSelector
+					<TransitionWrapper className={getTransitionClasses()}>
+						<UploadView
 							activeTab={activeTab}
+							isAnimating={isAnimating}
 							onTabChange={handleTabChange}
-							isAnimating={isAnimating}
-						/>
-						<UploadContent
-							activeTab={activeTab}
-							isAnimating={isAnimating}
 							onLoadingChange={handleLoadingChange}
 							onLoadingError={handleError}
 							onTaskCreated={handleTaskCreated}
 						/>
-					</div>
+					</TransitionWrapper>
 				)}
 				{currentView === 'loader' && (
-					<div className={getTransitionClasses()}>
+					<TransitionWrapper className={getTransitionClasses()}>
 						<ProcessLoader activeTab={activeTab} />
-					</div>
+					</TransitionWrapper>
 				)}
 				{currentView === 'taskInfo' && taskData && (
-					<div className={getTransitionClasses()}>
+					<TransitionWrapper className={getTransitionClasses()}>
 						<TaskInformation
 							loading={isFetching}
-							id={taskData.args[0].id}
+							id={taskId}
 							time={taskData.enqueue_time}
 							name={taskData.args[0].name}
 						/>
-					</div>
+					</TransitionWrapper>
 				)}
 			</div>
 			<ErrorModal

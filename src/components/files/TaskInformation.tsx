@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 
 interface TaskInformationProps {
 	loading: boolean
-	id: string
+	id: string | null
 	time: string | number | Date
 	name: string
 }
@@ -37,11 +37,12 @@ export default function TaskInformation({
 	}, [loading])
 
 	const handleDownload = async () => {
-		console.log(id);
-		
 		try {
-			const response = await downloadTask(id).unwrap()
-			console.log(response)
+			if (id) {
+				await downloadTask(id).unwrap()
+			} else {
+				console.error('Cannot download: Task ID is null')
+			}
 		} catch (error) {
 			console.error('Download failed:', error)
 		}

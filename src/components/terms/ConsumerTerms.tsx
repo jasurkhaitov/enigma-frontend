@@ -9,7 +9,7 @@ import {
 	FileTerminal,
 	CreditCard,
 	Menu,
-	X
+	X,
 } from 'lucide-react'
 
 const ConsumerTerms = () => {
@@ -120,34 +120,34 @@ const ConsumerTerms = () => {
 			opacity: 0,
 			transition: {
 				duration: 0.3,
-				when: "afterChildren",
+				when: 'afterChildren',
 				staggerChildren: 0.05,
-				staggerDirection: -1
-			}
+				staggerDirection: -1,
+			},
 		},
 		open: {
-			height: "auto",
+			height: 'auto',
 			opacity: 1,
 			transition: {
 				duration: 0.3,
-				when: "beforeChildren",
+				when: 'beforeChildren',
 				staggerChildren: 0.05,
-				staggerDirection: 1
-			}
-		}
+				staggerDirection: 1,
+			},
+		},
 	}
 
 	const itemVariants = {
 		closed: {
 			opacity: 0,
 			y: 10,
-			transition: { duration: 0.2 }
+			transition: { duration: 0.2 },
 		},
 		open: {
 			opacity: 1,
 			y: 0,
-			transition: { duration: 0.2 }
-		}
+			transition: { duration: 0.2 },
+		},
 	}
 
 	return (
@@ -167,17 +167,17 @@ const ConsumerTerms = () => {
 					>
 						<FileText className='mr-2' /> Enigma Terms
 					</motion.h1>
-					<motion.button 
+					<motion.button
 						onClick={toggleMenu}
 						className='p-2 rounded-lg hover:bg-yellow-800 transition-colors'
 						aria-label='Toggle navigation menu'
 						whileHover={{ scale: 1.1 }}
 						whileTap={{ scale: 0.9 }}
 					>
-						<AnimatePresence mode="wait">
+						<AnimatePresence mode='wait'>
 							{menuOpen ? (
 								<motion.div
-									key="close"
+									key='close'
 									initial={{ rotate: -90, opacity: 0 }}
 									animate={{ rotate: 0, opacity: 1 }}
 									exit={{ rotate: 90, opacity: 0 }}
@@ -187,7 +187,7 @@ const ConsumerTerms = () => {
 								</motion.div>
 							) : (
 								<motion.div
-									key="open"
+									key='open'
 									initial={{ rotate: 90, opacity: 0 }}
 									animate={{ rotate: 0, opacity: 1 }}
 									exit={{ rotate: -90, opacity: 0 }}
@@ -201,12 +201,19 @@ const ConsumerTerms = () => {
 				</div>
 
 				<AnimatePresence>
-					<motion.div 
-						className="bg-yellow-700 text-white p-6 space-y-2 md:space-y-3 overflow-hidden md:block"
+					<motion.div
+						className='bg-yellow-700 text-white p-6 space-y-2 md:space-y-3 overflow-hidden md:block'
 						initial={false}
-						animate={menuOpen || window.innerWidth >= 768 ? "open" : "closed"}
+						animate={menuOpen || window.innerWidth >= 768 ? 'open' : 'closed'}
 						variants={menuVariants}
-						style={{ display: window.innerWidth >= 768 ? "block" : menuOpen ? "block" : "none" }}
+						style={{
+							display:
+								window.innerWidth >= 768
+									? 'block'
+									: menuOpen
+									? 'block'
+									: 'none',
+						}}
 					>
 						<motion.h1
 							variants={itemVariants}

@@ -26,15 +26,15 @@ export default function Carousel() {
 					<div key={slide.id} className='min-w-full'>
 						<img
 							loading='lazy'
-							src={slide.src}
-							alt={slide.alt}
+							src={slide.image}
+							alt={slide.title}
 							className='w-full h-72 object-cover rounded-2xl'
 						/>
 						<div className='p-6 text-center h-44'>
-							<h3 className='text-[32px] font-medium text-white leading-10 mb-2'>
+							<h3 className='text-2xl font-medium text-white leading-10 mb-2'>
 								{slide.title}
 							</h3>
-							<p className='text-[16px] font-normal leading-6 text-white'>
+							<p className='text-sm font-normal leading-6 text-white'>
 								{slide.description}
 							</p>
 						</div>

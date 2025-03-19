@@ -22,15 +22,53 @@ const initialState: AuthState = {
 	accessToken: null,
 }
 
+const validateUsername = (username: string): string => {
+	if (!username) {
+		return 'Username is required'
+	}
+
+	if (username.length < 4) {
+		return 'Username must be at least 4 characters'
+	}
+
+	if (!/^[a-zA-Z0-9._]+$/.test(username)) {
+		return 'Username can only contain letters, numbers, dots, and underscores'
+	}
+
+	return ''
+}
+
+const validatePassword = (password: string): string => {
+	if (!password) {
+		return 'Password is required'
+	}
+
+	if (password.length < 8) {
+		return 'Password must be at least 8 characters'
+	}
+
+	if (!/[a-z]/.test(password)) {
+		return 'Password must contain at least one lowercase letter'
+	}
+
+	if (!/[0-9]/.test(password)) {
+		return 'Password must contain at least one number'
+	}
+
+	return ''
+}
+
 const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
 		setEmail: (state, action: PayloadAction<string>) => {
 			state.email = action.payload
+			state.emailError = validateUsername(action.payload)
 		},
 		setPassword: (state, action: PayloadAction<string>) => {
 			state.password = action.payload
+			state.passwordError = validatePassword(action.payload)
 		},
 		toggleShowPassword: state => {
 			state.showPassword = !state.showPassword
@@ -40,6 +78,10 @@ const authSlice = createSlice({
 		},
 		setPasswordFocused: (state, action: PayloadAction<boolean>) => {
 			state.isPasswordFocused = action.payload
+		},
+		validateForm: state => {
+			state.emailError = validateUsername(state.email)
+			state.passwordError = validatePassword(state.password)
 		},
 		resetForm: () => {
 			return initialState
@@ -59,6 +101,7 @@ export const {
 	toggleShowPassword,
 	setEmailFocused,
 	setPasswordFocused,
+	validateForm,
 	setAccessToken,
 	resetForm,
 	logout,

@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /login
+Disallow: /history
+Disallow: /terms
+Disallow: /privacy-policy
+Disallow: /usage-policy
+
+# Allow search engines to crawl the main pages
+Allow: /$
+Allow: /
+
+# Sitemap
+Sitemap: https://enigmadoc.com/sitemap.xml

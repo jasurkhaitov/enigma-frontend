@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
         'User Account: Name, email, language preference',
         'Document Information:',
         '• Word (.docx) files',
-        '• English ↔ Uzbek translations',
+        '• English ↔ Uzbek ↔ Russian  translations',
         '• Upload timestamps',
         'Technical Data:',
         '• IP address',

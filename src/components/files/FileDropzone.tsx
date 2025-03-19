@@ -218,7 +218,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
 						: title}
 				</h3>
 
-				<p className='text-gray-500 dark:text-gray-400 text-sm mb-4'>
+				<p className='text-gray-500 dark:text-gray-400 text-sm mb-2'>
 					{error
 						? 'Only DOCX files up to 10 MB are allowed'
 						: uploading
@@ -232,7 +232,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
 					<Button
 						variant='outlined'
 						onClick={() => inputRef.current?.click()}
-						className='text-sm'
+						className='text-sm mt-2'
 					>
 						<Upload size={20} className='mr-1 translate-y-0.5' />
 						Select DOCX file

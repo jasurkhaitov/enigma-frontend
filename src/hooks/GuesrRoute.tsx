@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAppSelector } from '../store'
+import { useAppSelector } from '@/store'
 import { useEffect, useState } from 'react'
 import { useRefreshAuth } from '@/service/refreshAuth'
 import AnimatedLoader from '@/components/ui/icons/AnimatedLoader'
 
-const ProtectedRoute = () => {
+const GuestRoute = () => {
 	const { accessToken } = useAppSelector(state => state.auth)
 	const [isLoading, setIsLoading] = useState(true)
 	const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -35,11 +35,11 @@ const ProtectedRoute = () => {
 		)
 	}
 
-	if (!isAuthenticated) {
-		return <Navigate to='/login' replace />
+	if (isAuthenticated) {
+		return <Navigate to='/' replace />
 	}
 
 	return <Outlet />
 }
 
-export default ProtectedRoute
+export default GuestRoute

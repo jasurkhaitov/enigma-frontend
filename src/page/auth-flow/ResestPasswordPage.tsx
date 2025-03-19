@@ -2,11 +2,17 @@ import { useEffect } from 'react'
 import AuthHeader from '../../components/shared/AuthHeader'
 import Carousel from '../../components/shared/Carousel'
 import ResetPassword from '@/components/reset-password/ResetPassword'
+import { Navigate, useLocation } from 'react-router-dom'
 
 export default function ResestPasswordPage() {
 	useEffect(() => {
-		document.title = 'Create a secure password to protect your account and access all features.'
+		document.title =
+			'Create a secure password to protect your account and access all features.'
 	}, [])
+
+	const location = useLocation()
+
+	if (!location.state) return <Navigate to='/login' replace />
 
 	return (
 		<div className='w-full h-screen flex items-center gap-0'>

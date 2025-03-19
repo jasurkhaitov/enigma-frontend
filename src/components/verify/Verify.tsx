@@ -53,7 +53,7 @@ export default function Verify({ path }: VerifyProps) {
     if (otpValue === FAKE_CODE) {
       setVerificationStatus({ error: false, success: true, message: 'Verification successful!' })
       setTimeout(() => {
-        navigate(path === 'login' ? '/reset-password' : '/')
+        navigate(path === 'login' ? '/reset-password' : '/', {state: true})
       }, 1000)
     } else {
       setVerificationStatus({ error: true, success: false, message: 'Entered code is incorrect. Please try again.' })

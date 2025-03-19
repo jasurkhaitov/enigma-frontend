@@ -219,3 +219,29 @@ img {
   outline: none !important;
   box-shadow: none !important;
 }
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); transform-origin: 16px 16px; }
+  100% { transform: rotate(360deg); transform-origin: 16px 16px; }
+}
+
+.gear {
+  animation: rotate 4s linear infinite;
+}
+
+.letter {
+  animation: pulse 1.5s infinite;
+}
+
+.e { animation-delay: 0s; }
+.n { animation-delay: 0.2s; }
+.i { animation-delay: 0.4s; }
+.g { animation-delay: 0.6s; }
+.m { animation-delay: 0.8s; }
+.a { animation-delay: 1s; }
