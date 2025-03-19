@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function BrendLogo() {
 	return (
-		<Link to={'/'}>
+		<Link to={'/'} aria-label="Home Url">
 			<svg
 				width='147'
 				height='32'

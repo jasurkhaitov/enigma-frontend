@@ -210,13 +210,13 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
 					)}
 				</div>
 
-				<h3 className='font-medium text-lg mb-1'>
+				<h2 className='font-medium text-lg mb-1'>
 					{error
 						? 'Invalid File'
 						: file
 						? `${file.name.slice(0, 25)}${file.name.length > 25 ? '...' : ''}`
 						: title}
-				</h3>
+				</h2>
 
 				<p className='text-gray-500 dark:text-gray-400 text-sm mb-2'>
 					{error
