@@ -12,6 +12,7 @@ import RegisterPage from './page/auth-flow/RegisterPage';
 import VerifyPage from './page/auth-flow/VerifyPage';
 import ResestPasswordPage from './page/auth-flow/ResestPasswordPage';
 import GuestRoute from './hooks/GuesrRoute'
+// import ChatPage from './page/browse/ChatPage'
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path='/' element={<MainPage />} />
           <Route path='/jobs' element={<HistoryPage />} />
           <Route path='/settings' element={<SettingsPage />} />
+          {/* <Route path='/chat' element={<ChatPage />} /> */}
         </Route>
         
         <Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
