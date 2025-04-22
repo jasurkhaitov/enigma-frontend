@@ -1,43 +1,59 @@
-import { Route, Routes } from 'react-router-dom';
-import MainPage from './page/browse/MainPage';
-import HistoryPage from './page/browse/HistoryPage';
-import NotFoundPage from './page/browse/NotFoundPage';
-import PrivacyPolicyPage from './page/terms-agreement/PrivacyPolicyPage';
-import ConsumerTermsPage from './page/terms-agreement/ConsumerTermsPage';
-import UsagePolicyPage from './page/terms-agreement/UsagePolicyPage';
-import LoginPage from './page/auth-flow/LoginPage';
-import ProtectedRoute from './hooks/ProtectedRoute';
-import SettingsPage from './page/browse/SettingsPage';
-import RegisterPage from './page/auth-flow/RegisterPage';
-import VerifyPage from './page/auth-flow/VerifyPage';
-import ResestPasswordPage from './page/auth-flow/ResestPasswordPage';
+import { Route, Routes } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+
+const MainPage = lazy(() => import('./page/browse/MainPage'))
+const HistoryPage = lazy(() => import('./page/browse/HistoryPage'))
+const NotFoundPage = lazy(() => import('./page/browse/NotFoundPage'))
+const PrivacyPolicyPage = lazy(
+	() => import('./page/terms-agreement/PrivacyPolicyPage')
+)
+const ConsumerTermsPage = lazy(
+	() => import('./page/terms-agreement/ConsumerTermsPage')
+)
+const UsagePolicyPage = lazy(
+	() => import('./page/terms-agreement/UsagePolicyPage')
+)
+const LoginPage = lazy(() => import('./page/auth-flow/LoginPage'))
+const SettingsPage = lazy(() => import('./page/browse/SettingsPage'))
+const RegisterPage = lazy(() => import('./page/auth-flow/RegisterPage'))
+const VerifyPage = lazy(() => import('./page/auth-flow/VerifyPage'))
+const ResestPasswordPage = lazy(
+	() => import('./page/auth-flow/ResestPasswordPage')
+)
+
+import ProtectedRoute from './hooks/ProtectedRoute'
 import GuestRoute from './hooks/GuestRoute'
-// import ChatPage from './page/browse/ChatPage'
+import AnimatedLoader from './components/ui/icons/AnimatedLoader'
+// const ChatPage = lazy(() => import('./page/browse/ChatPage'));
 
 export default function App() {
-  return (
-    <div className='font-onest'>
-      <Routes>
-        <Route path='*' element={<NotFoundPage />} />
-        
-        <Route element={<GuestRoute />}>
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/verify' element={<VerifyPage />} />
-          <Route path='/reset-password' element={<ResestPasswordPage />} />
-        </Route>
-        
-        <Route element={<ProtectedRoute />}>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/jobs' element={<HistoryPage />} />
-          <Route path='/settings' element={<SettingsPage />} />
-          {/* <Route path='/chat' element={<ChatPage />} /> */}
-        </Route>
-        
-        <Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
-        <Route path='/consumer-terms' element={<ConsumerTermsPage />} />
-        <Route path='/usage-policy' element={<UsagePolicyPage />} />
-      </Routes>
-    </div>
-  );
+	return (
+		<div className='font-onest'>
+			<Suspense fallback={<div className='w-full h-screen flex items-center justify-center'>
+              <AnimatedLoader />
+            </div>}>
+				<Routes>
+					<Route path='*' element={<NotFoundPage />} />
+
+					<Route element={<GuestRoute />}>
+						<Route path='/login' element={<LoginPage />} />
+						<Route path='/register' element={<RegisterPage />} />
+						<Route path='/verify' element={<VerifyPage />} />
+						<Route path='/reset-password' element={<ResestPasswordPage />} />
+					</Route>
+
+					<Route element={<ProtectedRoute />}>
+						<Route path='/' element={<MainPage />} />
+						<Route path='/jobs' element={<HistoryPage />} />
+						<Route path='/settings' element={<SettingsPage />} />
+						{/* <Route path="/chat" element={<ChatPage />} /> */}
+					</Route>
+
+					<Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
+					<Route path='/consumer-terms' element={<ConsumerTermsPage />} />
+					<Route path='/usage-policy' element={<UsagePolicyPage />} />
+				</Routes>
+			</Suspense>
+		</div>
+	)
 }

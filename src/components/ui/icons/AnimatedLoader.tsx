@@ -4,8 +4,9 @@ export default function AnimatedLoader() {
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 147 32'
 			width='147'
-			height='32'
-			style={{ width: '300px', margin: 'auto', height: 'auto' }}
+			height='40'
+			className="overflow-visible"
+			style={{ width: '300px', padding: '5px', margin: 'auto', height: 'auto' }}
 		>
 			<g className='gear'>
 				<path

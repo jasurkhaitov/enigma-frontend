@@ -97,6 +97,9 @@ export const jobsApi = createApi({
 		downloadTask: builder.mutation<GetTaskResponse, string>({
 			query: task_id => ({ url: `/tasks/download/${task_id}`, method: 'GET' }),
 		}),
+		deleteTask: builder.mutation<GetTaskResponse, string>({
+			query: task_id => ({ url: `/tasks/delete/${task_id}`, method: 'DELETE' }),
+		}),
 	}),
 })
 
@@ -105,4 +108,5 @@ export const {
 	useUploadDocumentMutation,
 	useGetTaskInformationQuery,
 	useDownloadTaskMutation,
+	useDeleteTaskMutation
 } = jobsApi;
