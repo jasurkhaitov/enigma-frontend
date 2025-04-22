@@ -105,4 +105,4 @@ export const {
 	useUploadDocumentMutation,
 	useGetTaskInformationQuery,
 	useDownloadTaskMutation,
-} = jobsApi
+} = jobsApi;

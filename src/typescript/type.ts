@@ -50,6 +50,7 @@ export interface UploadResponse {
 }
 
 export interface GetTaskResponse {
+	file_url: any
 	function: string
 	args: TaskArgument[]
 	kwargs: Record<string, unknown>

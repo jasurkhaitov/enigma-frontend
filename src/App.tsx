@@ -11,7 +11,7 @@ import SettingsPage from './page/browse/SettingsPage';
 import RegisterPage from './page/auth-flow/RegisterPage';
 import VerifyPage from './page/auth-flow/VerifyPage';
 import ResestPasswordPage from './page/auth-flow/ResestPasswordPage';
-import GuestRoute from './hooks/GuesrRoute'
+import GuestRoute from './hooks/GuestRoute'
 // import ChatPage from './page/browse/ChatPage'
 
 export default function App() {

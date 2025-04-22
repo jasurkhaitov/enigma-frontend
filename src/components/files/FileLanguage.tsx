@@ -16,7 +16,7 @@ interface MultipleFileLanguageProps {
   setSlaveLang: (lang: string) => void;
 }
 
-const languages = ["Uzbek", "English", "Russian"];
+const languages = ["Uzbek", "English", "Russian", 'Ўзбек'];
 
 const FileLanguage: React.FC<MultipleFileLanguageProps> = ({
   masterLang,

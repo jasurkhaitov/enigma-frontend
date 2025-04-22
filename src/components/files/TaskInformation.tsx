@@ -39,14 +39,23 @@ export default function TaskInformation({
 	const handleDownload = async () => {
 		try {
 			if (id) {
-				await downloadTask(id).unwrap()
+				const res = await downloadTask(id).unwrap()
+
+				const downloadUrl = res.file_url
+	
+				const link = document.createElement('a')
+				link.href = downloadUrl
+				link.download = ''
+				document.body.appendChild(link)
+				link.click()
+				document.body.removeChild(link)
 			} else {
 				console.error('Cannot download: Task ID is null')
 			}
 		} catch (error) {
 			console.error('Download failed:', error)
 		}
-	}
+	}	
 
 	return (
 		<div className='w-full max-w-lg mx-auto text-center flex flex-col items-center justify-center min-h-[400px]'>

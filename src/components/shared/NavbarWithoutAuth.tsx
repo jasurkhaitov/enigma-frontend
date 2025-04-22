@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import BrendLogo from '../ui/icons/BrendLogo'
 import { Button } from '../ui/button'
 import { CircleHelp, UserPlus, Menu, X } from 'lucide-react'
@@ -9,6 +9,7 @@ import NavbarWithoutAuthMenu from './NavbarWithoutAuthMenu'
 export default function NavbarWithoutAuth() {
 	const [helpTooltipVisible, setHelpTooltipVisible] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto'
@@ -16,6 +17,11 @@ export default function NavbarWithoutAuth() {
 			document.body.style.overflow = 'auto'
 		}
 	}, [isMenuOpen])
+
+	const handleRegister = () => {
+		setIsMenuOpen(!isMenuOpen)
+		navigate('/register')
+	}
 
 	return (
 		<div className='sticky top-0 border-b bg-white border-disabled-bg shadow-xs z-50'>
@@ -56,7 +62,7 @@ export default function NavbarWithoutAuth() {
 					className='md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none'
 					aria-controls='mobile-menu'
 					aria-expanded={isMenuOpen}
-					onClick={() => setIsMenuOpen(!isMenuOpen)}
+					onClick={handleRegister}
 				>
 					<span className='sr-only'>Open main menu</span>
 					{isMenuOpen ? (

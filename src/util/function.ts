@@ -1,5 +1,6 @@
 export function convertLanguage(language: string): string {
 	if (language === 'English') return 'en'
 	else if (language === 'Russian') return 'ru'
-	return 'uz'
+	else if (language === 'Uzbek') return 'uz'
+	return 'oz'
 }
