@@ -28,7 +28,7 @@ export default function HistoryPage() {
 			<div className='sticky top-0 left-0 w-full z-10'>
 				<Navbar />
 			</div>
-			<div className='max-w-[1280px] m-auto p-4 py-10'>
+			<div className='max-w-[1600px] m-auto p-4 py-10'>
 				<div className='flex flex-col sm:flex-row gap-5 justify-between mb-8'>
 					<h2 className='font-semibold text-2xl text-text'>
 						Comparison History

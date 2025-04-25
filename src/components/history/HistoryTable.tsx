@@ -19,6 +19,7 @@ export interface Job {
 	name: string
 	status: string
 	processed_path: string
+	created_at: string
 }
 
 export type StatusVariantMap = {
@@ -39,8 +40,11 @@ export default function HistoryTable({
 	const { refreshAccessToken } = useRefreshAuth()
 
 	const pageParam = searchParams.get('page')
+	const itemsPerPageParam = searchParams.get('items_per_page')
 
-	const [itemsPerPage, setItemsPerPage] = useState(defaultItemsPerPage)
+	const [itemsPerPage, setItemsPerPage] = useState(
+		itemsPerPageParam ? parseInt(itemsPerPageParam, 10) : defaultItemsPerPage
+	)
 	const [page, setPage] = useState(pageParam ? parseInt(pageParam, 10) : 1)
 	const [isPageInitialized, setIsPageInitialized] = useState(false)
 
@@ -55,7 +59,7 @@ export default function HistoryTable({
 
 	const { data, error, isLoading, refetch } = useGetJobsQuery({
 		page,
-		items_per_page: defaultItemsPerPage,
+		items_per_page: itemsPerPage,
 	})
 
 	const exampleData: Job[] = [
@@ -63,6 +67,7 @@ export default function HistoryTable({
 			id: '1151ddce-b1e6-45fd-9cbe-c8431029647a',
 			user_id: '3b29fbb3-ef59-47f1-9e90-6c970b2ea9d4',
 			job_id: 'cb1c29c94a5348a9a597559a2ac5f515',
+			created_at: '2025-04-22T14:40:06.771552Z',
 			master_lang: 'en',
 			slave_lang: 'ru',
 			name: 'asdasd',
@@ -101,12 +106,28 @@ export default function HistoryTable({
 	}, [pageParam, defaultItemsPerPage, isPageInitialized])
 
 	useEffect(() => {
-		if (isPageInitialized) {
+		if (isPageInitialized && data) {
+			let correctPage = page
+
+			if (totalPages > 0 && correctPage > totalPages) {
+				correctPage = totalPages
+				setPage(correctPage)
+			}
+
 			const params = new URLSearchParams(searchParams)
-			params.set('page', page.toString())
+			params.set('page', correctPage.toString())
+			params.set('items_per_page', itemsPerPage.toString())
 			setSearchParams(params, { replace: true })
 		}
-	}, [page, setSearchParams, searchParams, isPageInitialized])
+	}, [
+		page,
+		itemsPerPage,
+		totalPages,
+		isPageInitialized,
+		searchParams,
+		setSearchParams,
+		data,
+	])
 
 	useEffect(() => {
 		if (isPageInitialized && defaultItemsPerPage !== itemsPerPage) {
@@ -131,13 +152,19 @@ export default function HistoryTable({
 
 		const newTotalPages = Math.ceil(totalCount / newItemsPerPage)
 
-		if (page > newTotalPages) {
+		if (page > newTotalPages && newTotalPages > 0) {
 			setPage(newTotalPages)
 		} else {
 			setPage(1)
 		}
 
 		onItemsPerPageChange(newItemsPerPage)
+
+		const params = new URLSearchParams(searchParams)
+		params.set('items_per_page', newItemsPerPage.toString())
+		params.set('page', '1')
+
+		setSearchParams(params, { replace: true })
 		refetch()
 	}
 

@@ -134,15 +134,15 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
 		setUploading(true)
 		setTimeout(() => {
 			setFile(file)
-			toast.success(`${file.name} has been successfully uploaded`)
+			// toast.success(`${file.name} has been successfully uploaded`)
 		}, 1000)
 	}
 
 	const handleRemoveFile = () => {
 		if (file) {
-			const fileName = file.name
+			// const fileName = file.name
 			setFile(null)
-			toast.info(`${fileName} has been removed`)
+			// toast.info(`${fileName} has been removed`)
 		}
 	}
 
@@ -198,15 +198,15 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
 			)}
 
 			<div className='flex flex-col items-center justify-center h-full'>
-				<div className='mb-4 rounded-full'>
+				<div className='rounded-full'>
 					{error ? (
 						<AlertTriangle size={50} className='text-destructive' />
 					) : uploading ? (
 						<Upload size={50} className='text-blue-500' />
 					) : file ? (
-						<Icons.PdfIcon size={50} className='text-blue-500' />
+						<Icons.WordIcon size={75} className='text-blue-500' />
 					) : (
-						<Icons.PdfIcon size={50} className='text-gray-400' />
+						<Icons.WordIcon size={75} className='text-gray-400' />
 					)}
 				</div>
 

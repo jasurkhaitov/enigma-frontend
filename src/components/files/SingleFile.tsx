@@ -81,14 +81,6 @@ const SingleFile: React.FC<SingleFileProps> = ({
 			>
 				Translate
 			</Button>
-			<div className='flex justify-center'>
-				<a
-					href=''
-					className='text-primary font-medium text-xs sm:text-sm leading-6 underline hover:text-blue-700'
-				>
-					See Sample Comparison
-				</a>
-			</div>
 		</div>
 	)
 }

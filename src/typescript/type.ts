@@ -23,6 +23,7 @@ export interface Job {
 	name: string
 	status: string
 	processed_path: string
+	created_at: string
 }
 
 export interface JobsResponse {
@@ -50,7 +51,7 @@ export interface UploadResponse {
 }
 
 export interface GetTaskResponse {
-	file_url: any
+	file_url: string
 	function: string
 	args: TaskArgument[]
 	kwargs: Record<string, unknown>

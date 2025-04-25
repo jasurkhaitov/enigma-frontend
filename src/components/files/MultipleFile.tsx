@@ -45,7 +45,7 @@ const MultipleFile: React.FC<MultipleFileProps> = ({
 				slave_file: currentFile,
 			}).unwrap()
 
-			toast.success('Document uploaded successfully!')
+			// toast.success('Document uploaded successfully!')
 			setPreviousFile(null)
 			setCurrentFile(null)
 
@@ -53,7 +53,7 @@ const MultipleFile: React.FC<MultipleFileProps> = ({
 				onTaskCreated(response.id)
 			}
 		} catch (error) {
-			toast.error('Failed to compare document.')
+			// toast.error('Failed to compare document.')
 			console.error('Upload Error:', error)
 			if (onLoadingError) {
 				onLoadingError(true)
@@ -69,12 +69,12 @@ const MultipleFile: React.FC<MultipleFileProps> = ({
 		<div className='w-full space-y-4 sm:space-y-6'>
 			<div className='flex flex-col md:flex-row gap-4 sm:gap-6'>
 				<FileDropzone
-					title='Previous Version'
+					title='Master Language Doc'
 					file={previousFile}
 					setFile={setPreviousFile}
 				/>
 				<FileDropzone
-					title='Current Version'
+					title='Slave Language Doc'
 					file={currentFile}
 					setFile={setCurrentFile}
 				/>
@@ -90,16 +90,8 @@ const MultipleFile: React.FC<MultipleFileProps> = ({
 				onClick={handleCompare}
 				disabled={isLoading}
 			>
-				Compare
+				Reconcile
 			</Button>
-			<div className='flex justify-center'>
-				<a
-					href=''
-					className='text-primary font-medium text-xs sm:text-sm leading-6 underline hover:text-blue-700'
-				>
-					See Sample Comparison
-				</a>
-			</div>
 		</div>
 	)
 }

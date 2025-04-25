@@ -20,6 +20,9 @@ export function LoadingTableRow({ rowCount = 10 }: JobsTableSkeletonProps) {
 						<Skeleton className='h-6 w-32' />
 					</TableCell>
 					<TableCell>
+						<Skeleton className='h-6 w-32' />
+					</TableCell>
+					<TableCell>
 						<Skeleton className='h-6 w-24' />
 					</TableCell>
 					<TableCell>

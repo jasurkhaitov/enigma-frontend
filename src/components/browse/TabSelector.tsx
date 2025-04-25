@@ -19,7 +19,7 @@ const TabSelector: React.FC<TabSelectorProps> = ({
   }
 
   return (
-    <div className='relative flex w-full max-w-[400px] mb-6 h-12 m-auto border border-gray-200 rounded-full overflow-hidden bg-white shadow-sm'>
+    <div className='relative flex w-full max-w-[500px] mb-6 h-12 m-auto border border-gray-200 rounded-full overflow-hidden bg-white shadow-sm'>
       <div
         className='absolute top-0 bottom-0 bg-primary hover:bg-primary-hover transition-all duration-300 ease-in-out rounded-full'
         style={{
@@ -47,7 +47,7 @@ const TabSelector: React.FC<TabSelectorProps> = ({
         onClick={() => handleTabChange('single')}
       >
         <SingleFileIcon isActive={activeTab === 'single'} />
-        <span className='ml-2'>Single File</span>
+        <span className='ml-2'>Single Bilingual File</span>
       </button>
     </div>
   )

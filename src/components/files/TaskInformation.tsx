@@ -42,7 +42,7 @@ export default function TaskInformation({
 				const res = await downloadTask(id).unwrap()
 
 				const downloadUrl = res.file_url
-	
+
 				const link = document.createElement('a')
 				link.href = downloadUrl
 				link.download = ''
@@ -55,7 +55,7 @@ export default function TaskInformation({
 		} catch (error) {
 			console.error('Download failed:', error)
 		}
-	}	
+	}
 
 	return (
 		<div className='w-full max-w-lg mx-auto text-center flex flex-col items-center justify-center min-h-[400px]'>
@@ -68,8 +68,8 @@ export default function TaskInformation({
 				</div>
 			) : (
 				<>
-					<Icons.PdfIcon size={64} />
-					<p className='mt-4 text-base font-medium leading-6 text-secondary-low'>
+					<Icons.WordIcon size={100} />
+					<p className='text-base font-medium leading-6 text-secondary-low'>
 						{name}
 					</p>
 					<p className='text-xl font-semibold leading-6 text-text mt-6 mb-2'>

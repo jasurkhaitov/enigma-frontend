@@ -96,7 +96,7 @@ export const Icons = {
 		</svg>
 	),
 
-	PdfIcon: ({ size = 40, className = '' }) => (
+	WordIcon: ({ size = 50, className = '' }) => (
 		<svg
 			width={size}
 			height={size}
@@ -105,111 +105,23 @@ export const Icons = {
 			xmlns='http://www.w3.org/2000/svg'
 			className={className}
 		>
-			<g filter='url(#filter0_ii_7274_435)'>
-				<path
-					fillRule='evenodd'
-					clipRule='evenodd'
-					d='M11 4C9.23274 4 7.80005 5.43269 7.80005 7.2V40.8C7.80005 42.5673 9.23274 44 11 44H37C38.7674 44 40.2001 42.5673 40.2001 40.8V13.9998L30.2002 4H11Z'
-					fill='#FA4E4E'
-				/>
-			</g>
-			<path
-				d='M30.4963 30.9387C29.1465 30.8384 27.847 30.3372 26.7973 29.4349C24.7478 29.8859 22.798 30.5374 20.8485 31.3397C19.299 34.0964 17.8493 35.4999 16.5995 35.4999C16.3495 35.4999 16.0498 35.4499 15.8498 35.2994C15.2998 35.0489 15 34.4974 15 33.9462C15 33.4949 15.1 32.2419 19.8488 30.1867C20.9488 28.1817 21.7983 26.1267 22.4983 23.9714C21.8983 22.7684 20.5988 19.8109 21.4983 18.3074C21.7983 17.7559 22.3983 17.4552 23.0483 17.5054C23.548 17.5054 24.0478 17.7559 24.3478 18.1569C24.9978 19.0592 24.9478 20.9639 24.0977 23.7709C24.8978 25.2725 25.9456 26.6282 27.197 27.7809C28.247 27.5802 29.2965 27.4299 30.3463 27.4299C32.6958 27.4799 33.0458 28.5827 32.9958 29.2344C32.9958 30.9387 31.346 30.9387 30.4963 30.9387ZM16.4997 34.0462L16.6497 33.9962C17.3495 33.7457 17.8992 33.2444 18.2992 32.5927C17.5492 32.8934 16.9495 33.3947 16.4997 34.0464V34.0462ZM23.148 19.0092H22.998C22.948 19.0092 22.848 19.0092 22.798 19.0592C22.598 19.9112 22.748 20.8134 23.098 21.6154C23.398 20.7634 23.398 19.8612 23.148 19.0092ZM23.498 26.2772L23.448 26.3772L23.398 26.3272C22.948 27.4802 22.448 28.6329 21.8983 29.7357L21.9983 29.6857V29.7857C23.1099 29.3826 24.2451 29.0479 25.3975 28.7832L25.3475 28.7332H25.4975C24.7475 27.9812 24.0478 27.1292 23.498 26.2772ZM30.2963 28.9337C29.8463 28.9337 29.4465 28.9337 28.9965 29.0337C29.4965 29.2844 29.9965 29.3847 30.4963 29.4349C30.8463 29.4849 31.1963 29.4349 31.496 29.3347C31.496 29.1842 31.296 28.9337 30.2963 28.9337Z'
-				fill='white'
-			/>
-			<path
-				d='M39.2617 13.0625H31.1375L40.2 22.125V14L39.2617 13.0625Z'
-				fill='url(#paint0_linear_7274_435)'
-			/>
-			<path
-				d='M33.4 14L40.2 14L30.2 4L30.2 10.8C30.2 12.5673 31.6326 14 33.4 14Z'
-				fill='#FDB8B8'
-			/>
-			<defs>
-				<filter
-					id='filter0_ii_7274_435'
-					x='7.80005'
-					y='3.8'
-					width='32.3999'
-					height='40.4'
-					filterUnits='userSpaceOnUse'
-					colorInterpolationFilters='sRGB'
-				>
-					<feFlood floodOpacity='0' result='BackgroundImageFix' />
-					<feBlend
-						mode='normal'
-						in='SourceGraphic'
-						in2='BackgroundImageFix'
-						result='shape'
-					/>
-					<feColorMatrix
-						in='SourceAlpha'
-						type='matrix'
-						values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-						result='hardAlpha'
-					/>
-					<feOffset dy='-0.4' />
-					<feGaussianBlur stdDeviation='0.1' />
-					<feComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1' />
-					<feColorMatrix
-						type='matrix'
-						values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0'
-					/>
-					<feBlend
-						mode='normal'
-						in2='shape'
-						result='effect1_innerShadow_7274_435'
-					/>
-					<feColorMatrix
-						in='SourceAlpha'
-						type='matrix'
-						values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-						result='hardAlpha'
-					/>
-					<feOffset dy='0.4' />
-					<feGaussianBlur stdDeviation='0.1' />
-					<feComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1' />
-					<feColorMatrix
-						type='matrix'
-						values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0'
-					/>
-					<feBlend
-						mode='normal'
-						in2='effect1_innerShadow_7274_435'
-						result='effect2_innerShadow_7274_435'
-					/>
-				</filter>
-				<linearGradient
-					id='paint0_linear_7274_435'
-					x1='33.1687'
-					y1='11.0313'
-					x2='42.2312'
-					y2='20.0938'
-					gradientUnits='userSpaceOnUse'
-				>
-					<stop stopOpacity='0.2' />
-					<stop offset='1' stopOpacity='0' />
-				</linearGradient>
-			</defs>
-		</svg>
-	),
-
-	ErrorMessageIcon: ({ size = 40, className = '' }) => (
-		<svg
-			width={size}
-			height={size}
-			viewBox='0 0 40 40'
-			fill='none'
-			xmlns='http://www.w3.org/2000/svg'
-			className={className}
-		>
-			<path
-				d='M20 13.3333V20M20 26.6667H20.0167M13 35H27C29.8003 35 31.2004 35 32.27 34.455C33.2108 33.9757 33.9757 33.2108 34.455 32.27C35 31.2004 35 29.8003 35 27V13C35 10.1997 35 8.79961 34.455 7.73005C33.9757 6.78924 33.2108 6.02433 32.27 5.54497C31.2004 5 29.8003 5 27 5H13C10.1997 5 8.79961 5 7.73005 5.54497C6.78924 6.02433 6.02433 6.78924 5.54497 7.73005C5 8.79961 5 10.1997 5 13V27C5 29.8003 5 31.2004 5.54497 32.27C6.02433 33.2108 6.78924 33.9757 7.73005 34.455C8.79961 35 10.1997 35 13 35Z'
-				stroke='#CC2626'
-				strokeWidth='3'
-				stroke-linecap='round'
-				strokeLinejoin='round'
-			/>
+	<defs>
+		<linearGradient id="vscodeIconsFileTypeWord0" x1="4.494" x2="13.832" y1="-1712.086" y2="-1695.914" gradientTransform="translate(0 1720)" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#2368c4" />
+			<stop offset=".5" stop-color="#1a5dbe" />
+			<stop offset="1" stop-color="#1146ac" />
+		</linearGradient>
+	</defs>
+	<path fill="#41a5ee" d="M28.806 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5l11.069 3.25L30 9.5V4.191A1.19 1.19 0 0 0 28.806 3" />
+	<path fill="#2b7cd3" d="M30 9.5H8.512V16l11.069 1.95L30 16Z" />
+	<path fill="#185abd" d="M8.512 16v6.5l10.418 1.3L30 22.5V16Z" />
+	<path fill="#103f91" d="M9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5H8.512v5.309A1.19 1.19 0 0 0 9.705 29" />
+	<path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2" opacity="0.1" />
+	<path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191" opacity="0.2" />
+	<path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191" opacity="0.2" />
+	<path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191" opacity="0.2" />
+	<path fill="url(#vscodeIconsFileTypeWord0)" d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85" />
+	<path fill="#fff" d="M6.9 17.988q.035.276.046.481h.028q.015-.195.065-.47c.05-.275.062-.338.089-.465l1.255-5.407h1.624l1.3 5.326a8 8 0 0 1 .162 1h.022a8 8 0 0 1 .135-.975l1.039-5.358h1.477l-1.824 7.748h-1.727l-1.237-5.126q-.054-.222-.122-.578t-.084-.52h-.021q-.021.189-.084.561t-.1.552L7.78 19.871H6.024L4.19 12.127h1.5l1.131 5.418a5 5 0 0 1 .079.443" />
 		</svg>
 	),
 }

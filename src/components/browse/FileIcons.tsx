@@ -1,6 +1,6 @@
 export const SeparateFilesIcon = ({ isActive }: { isActive: boolean }) => (
 	<svg
-		className={`w-4 h-4 mr-2 ${isActive ? 'text-white' : 'text-gray-500'}`}
+		className={`w-4 h-4 mr-2 hidden sm:block ${isActive ? 'text-white' : 'text-gray-500'}`}
 		viewBox='0 0 24 24'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
@@ -26,7 +26,7 @@ export const SeparateFilesIcon = ({ isActive }: { isActive: boolean }) => (
 
 export const SingleFileIcon = ({ isActive }: { isActive: boolean }) => (
 	<svg
-		className={`w-4 h-4 mr-2 ${isActive ? 'text-white' : 'text-gray-500'}`}
+		className={`w-4 h-4 hidden sm:block mr-2 ${isActive ? 'text-white' : 'text-gray-500'}`}
 		viewBox='0 0 24 24'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
