@@ -29,11 +29,11 @@ export default defineConfig({
 	},
 	server: {
 		port: 5173,
-		host: true,
+		host: '0.0.0.0',
 		allowedHosts: ['enigmadoc.com'],
 		hmr: {
 			protocol: 'ws',
-			host: 'localhost',
+			host: '0.0.0.0',
 			port: 5173,
 		},
 	},
