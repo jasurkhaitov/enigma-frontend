@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
-/*---break--- */
+/*!---break--- */
 @plugin 'tailwindcss-animate';
-/*---break--- */
+/*!---break--- */
 @custom-variant dark (&:is(.dark *));
 
 @import 'tailwindcss';
@@ -44,6 +44,10 @@
 	--color-attention-green-bg: #c7f9cc;
 
 	--color-green-clickable: #26ad50;
+
+	--color-browse-blue: #313585;
+
+	--border-browse-border: #FFFFFF4D
 
 	/* Font */
 	--font-onest: 'Onest', serif;
@@ -306,4 +310,80 @@ img {
 
 .success-pulse {
 	animation: successPulse 1.5s infinite;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*! Example classes you could use in your CSS */
+
+.slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Slide-down animation for the nav bar */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Fade-in animation for the nav container */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Underline animation for active nav item */
+@keyframes underline {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.animate-underline {
+  animation: underline 0.2s ease-out forwards;
 }

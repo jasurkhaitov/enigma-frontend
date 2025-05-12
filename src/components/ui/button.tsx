@@ -18,11 +18,14 @@ const buttonVariants = cva(
         secondary: "bg-background-light text-text border-none hover:bg-disabled-bg active:bg-light-white disabled:bg-disabled-bg disabled:text-disabled-text",
         darkOutline: "border border-black text-text hover:bg-white-mode active:bg-background-light active:bg-opacity-95 disabled:text-disabled-text disabled:border-disabled-bg disabled:bg-transparent disabled:active:bg-transparent",
         outlined: "border border-black text-text hover:bg-white active:bg-background-light active:bg-opacity-95 disabled:text-disabled-text disabled:border-disabled-bg disabled:bg-transparent disabled:active:bg-transparent",
+
+        white: 'bg-white text-[#575DEB] font-medium'
       },
       size: {
         default: "px-4 py-2",
         sm: "rounded-md px-3",
         lg: "rounded-md px-6",
+        whiteMode: "rounded-md py-3 px-6",
         icon: "size-9",
       },
     },

@@ -30,9 +30,10 @@ export function JobsTableContent({
 		return statusVariantMap[lowercaseStatus] || 'processing'
 	}
 
-	const getFileName = (path: string): string => {
-		return path.split('/').pop() || path
-	}
+	const getFileName = (path: string | null | undefined): string => {
+		if (!path) return 'File Not Exist'
+		return path.split('/').pop() || 'File Not Exist'
+	}	
 
 	return (
 		<>

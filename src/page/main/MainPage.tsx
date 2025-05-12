@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Navbar from '../../components/shared/Navbar'
-import UploadManagementTab from '@/components/browse/UploadManagemenTab'
+import UploadManagementTab from '@/components/main/UploadManagemenTab'
 import Footer from '@/components/shared/Footer'
 
 export default function MainPage() {

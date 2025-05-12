@@ -61,11 +61,11 @@ export default function NavbarMenu({
 							className='w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors'
 							onClick={() => {
 								setIsMenuOpen(false)
-								navigate('/')
+								navigate('/dashboard')
 							}}
 						>
 							<Icons.Pulse />
-							<span>Create Comparison</span>
+							<span>Create Reconcile</span>
 						</Button>
 					</div>
 				</div>

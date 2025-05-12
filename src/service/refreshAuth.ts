@@ -1,31 +1,39 @@
 import { useRefreshTokenMutation } from '@/service/authApi'
 import { useAppDispatch } from '@/store'
-import { setAccessToken, logout } from '@/reducer/authSlice'
+import { setAccessToken } from '@/reducer/authSlice'
 import { useCallback } from 'react'
-import { useLogout } from '@/hooks/useLogout'
+
+interface ApiError {
+  status: number
+  data: {
+    detail?: string
+  }
+}
 
 export const useRefreshAuth = () => {
-	const dispatch = useAppDispatch()
-	const [refreshTokenMutation] = useRefreshTokenMutation()
-	const logoutf = useLogout()
+  const dispatch = useAppDispatch()
+  const [refreshTokenMutation] = useRefreshTokenMutation()
 
-	const refreshAccessToken = useCallback(async () => {
-		try {
-			const response = await refreshTokenMutation().unwrap()
+  const refreshAccessToken = useCallback(async () => {
+    try {
+      const response = await refreshTokenMutation().unwrap()
 
-			if (response.access_token) {
-				dispatch(setAccessToken(response.access_token))
-				return { success: true }
-			}
+      if (response.access_token) {
+        dispatch(setAccessToken(response.access_token))
+        return { success: true }
+      }
 
-			return { success: false }
-		} catch (error) {
-			console.error('Failed to refresh token:', error)
-			dispatch(logout())
-			logoutf()
-			return { success: false }
-		}
-	}, [dispatch, logoutf, refreshTokenMutation])
+      return { success: false }
+    } catch (error) {
+      const err = error as ApiError
 
-	return { refreshAccessToken }
+      if (err?.data?.detail === "Refresh token missing.") {
+        return { success: false }
+      }
+
+      return { success: false }
+    }
+  }, [dispatch, refreshTokenMutation])
+
+  return { refreshAccessToken }
 }

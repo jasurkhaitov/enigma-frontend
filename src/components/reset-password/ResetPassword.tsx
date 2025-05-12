@@ -63,7 +63,11 @@ export default function ResetPassword() {
 					<ArrowLeft size={16} className='mr-1' />
 					<span>Back</span>
 				</Button>
-				<Button onClick={() => navigate('/')} variant='default' className='w-2/3 inline'>
+				<Button
+					onClick={() => navigate('/dashboard')}
+					variant='default'
+					className='w-2/3 inline'
+				>
 					Continue
 				</Button>
 			</div>

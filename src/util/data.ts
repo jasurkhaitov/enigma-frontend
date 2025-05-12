@@ -117,3 +117,28 @@ export const initialHistoryData = [
 		targetDocument: 'Results_L.pdf',
 	},
 ]
+
+import one from '../assets/browse/browseOne.png'
+import two from '../assets/browse/browseTwo.png'
+import three from '../assets/browse/browseThree.png'
+
+export const possibilitiesData = [
+	{
+		id: 1,
+		img: one,
+		title: 'Precision under control',
+		desc: 'Enigma finds errors and inconsistencies in legal translations, from typos to distortions of meaning'
+	},
+	{
+		id: 2,
+		img: two,
+		title: 'Understands legal language',
+		desc: 'Knows terms and context like a pro and corrects automatically'
+	},
+	{
+		id: 3,
+		img: three,
+		title: 'Up to 80% faster',
+		desc: 'Minimizes manual verification, freeing up time for important tasks'
+	}
+]

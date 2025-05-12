@@ -1,4 +1,3 @@
-import { Instagram, Send } from 'lucide-react'
 import BrendLogo from '../ui/icons/BrendLogo'
 import { Link } from 'react-router-dom'
 
@@ -29,31 +28,11 @@ const Footer = ({ termPage }: { termPage: string }) => {
 					</nav>
 				</div>
 				<div className='flex flex-col items-center md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4'>
-					<div className='flex space-x-3'>
-						<a
-							href='https://instagram.com'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition'
-							aria-label='Instagram'
-						>
-							<Instagram size={20} className='text-gray-800' />
-						</a>
-						<a
-							href='https://telegram.org'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition'
-							aria-label='Telegram'
-						>
-							<Send size={20} className='text-gray-800' />
-						</a>
-					</div>
 					<a
-						href='mailto:info@enigma.uz'
+						href='mailto:bombe@enigmadoc.com'
 						className='text-sm hover:underline text-gray-600'
 					>
-						info@enigma.uz
+						bombe@enigmadoc.com
 					</a>
 				</div>
 			</div>

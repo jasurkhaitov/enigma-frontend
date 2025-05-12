@@ -12,15 +12,11 @@ export function useLogout() {
 		try {
 			await triggerLogout().unwrap()
 
-			dispatch(logout())
-
 			navigate('/login', { replace: true })
 		} catch (error) {
 			console.error('Logout failed:', error)
 
 			dispatch(logout())
-
-			navigate('/login', { replace: true })
 		}
 	}, [navigate, dispatch, triggerLogout])
 }

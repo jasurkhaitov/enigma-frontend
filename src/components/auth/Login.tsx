@@ -41,7 +41,7 @@ const Login = () => {
 				if (response) {
 					toast.success('Login successful !')
 					dispatch(setAccessToken(response.access_token))
-					navigate('/')
+					navigate('/dashboard')
 				}
 			} catch (error: unknown) {
 				if (typeof error === 'object' && error !== null && 'data' in error) {

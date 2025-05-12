@@ -27,13 +27,15 @@ export default defineConfig({
     host: '0.0.0.0',
     allowedHosts: true,
   },
+
   server: {
     port: 5173,
-    allowedHosts: true,
+    host: true,
     hmr: {
-      protocol: 'wss',
+      protocol: 'ws',
       host: 'localhost',
       port: 5173,
     },
   },
+  
 })

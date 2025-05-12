@@ -41,7 +41,7 @@ export default function NotFoundPage() {
 
 						<div className='flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start'>
 							<Link
-								to='/'
+								to='/dashboard'
 								className='inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors'
 							>
 								<Home size={18} />
