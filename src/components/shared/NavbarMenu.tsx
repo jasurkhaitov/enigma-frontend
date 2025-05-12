@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { Icons } from '../ui/icons/IconSvg'
-import { History, Settings, X } from 'lucide-react'
+import { History, X } from 'lucide-react'
 import BrendLogo from '../ui/icons/BrendLogo'
 
 interface MenuBarProps {
@@ -38,14 +38,14 @@ export default function NavbarMenu({
 				</div>
 
 				<div className='p-5 space-y-6'>
-					<Link
+					{/* <Link
 						to='/settings'
 						className='flex items-center space-x-2 text-gray-700 hover:text-gray-900 font-medium'
 						onClick={() => setIsMenuOpen(false)}
 					>
 						<Settings className='h-5 w-5' />
 						<span>Settings</span>
-					</Link>
+					</Link> */}
 
 					<Link
 						to='/jobs'

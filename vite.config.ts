@@ -4,37 +4,36 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import viteCompression from 'vite-plugin-compression'
 
-// https://vite.dev/config/
 export default defineConfig({
-	plugins: [
-		react(),
-		tailwindcss(),
-		viteCompression({ algorithm: 'brotliCompress' }),
-	],
-	build: {
-		sourcemap: true,
-		outDir: 'dist',
-		target: 'esnext',
-	},
-	resolve: {
-		alias: {
-			'@': path.resolve(__dirname, './src'),
-		},
-	},
-	preview: {
-		port: 5173,
-		strictPort: true,
-		host: '0.0.0.0',
-		allowedHosts: ['enigmadoc.com'],
-	},
-	server: {
-		port: 5173,
-		host: '0.0.0.0',
-		allowedHosts: ['enigmadoc.com'],
-		hmr: {
-			protocol: 'ws',
-			host: '0.0.0.0',
-			port: 5173,
-		},
-	},
+  plugins: [
+    react(),
+    tailwindcss(),
+    viteCompression({ algorithm: 'brotliCompress' }),
+  ],
+  build: {
+    sourcemap: true,
+    outDir: 'dist',
+    target: 'esnext',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  preview: {
+    port: 5173,
+    strictPort: true,
+    host: '0.0.0.0',
+    allowedHosts: ['enigmadoc.com'],
+  },
+  server: {
+    port: 5173,
+    host: '0.0.0.0',
+    allowedHosts: ['enigmadoc.com'],
+    hmr: process.env.NODE_ENV === 'production' ? false : {
+      protocol: 'ws',
+      host: 'enigmadoc.com',
+      port: 5173,
+    },
+  },
 })

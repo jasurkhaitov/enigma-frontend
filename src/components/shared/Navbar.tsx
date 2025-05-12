@@ -24,12 +24,12 @@ export default function Navbar() {
 				<BrendLogo />
 
 				<div className='hidden md:flex items-center space-x-8'>
-					<Link
+					{/* <Link
 						to='/settings'
 						className='font-medium text-[16px] text-gray-700 hover:text-gray-900 transition-colors'
 					>
 						Settings
-					</Link>
+					</Link> */}
 
 					<Link
 						to='/jobs'

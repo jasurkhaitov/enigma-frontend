@@ -134,10 +134,10 @@ const multipleFileSlice = createSlice({
 			const { dropzoneId } = action.payload
 
 			if (dropzoneId === 1 && state.file1) {
-				toast.info(`${state.file1.name} has been removed`)
+				// toast.info(`${state.file1.name} has been removed`)
 				state.file1 = null
 			} else if (dropzoneId === 2 && state.file2) {
-				toast.info(`${state.file2.name} has been removed`)
+				// toast.info(`${state.file2.name} has been removed`)
 				state.file2 = null
 			}
 		},

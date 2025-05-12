@@ -14,7 +14,7 @@ const UsagePolicyPage = lazy(
 	() => import('./page/terms-agreement/UsagePolicyPage')
 )
 const LoginPage = lazy(() => import('./page/auth-flow/LoginPage'))
-const SettingsPage = lazy(() => import('./page/main/SettingsPage'))
+// const SettingsPage = lazy(() => import('./page/main/SettingsPage'))
 const RegisterPage = lazy(() => import('./page/auth-flow/RegisterPage'))
 const VerifyPage = lazy(() => import('./page/auth-flow/VerifyPage'))
 const ResestPasswordPage = lazy(
@@ -52,7 +52,7 @@ export default function App() {
 					<Route element={<ProtectedRoute />}>
 						<Route path='/dashboard' element={<MainPage />} />
 						<Route path='/jobs' element={<HistoryPage />} />
-						<Route path='/settings' element={<SettingsPage />} />
+						{/* <Route path='/settings' element={<SettingsPage />} /> */}
 						{/* <Route path="/chat" element={<ChatPage />} /> */}
 					</Route>
 

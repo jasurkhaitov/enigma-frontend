@@ -11,6 +11,7 @@ const UploadManagementTab = () => {
 	const [isAnimating, setIsAnimating] = useState(false)
 	const [isUploading, setIsUploading] = useState(false)
 	const [isErrorModalOpen, setIsErrorModalOpen] = useState(false)
+	const [errorDropzoneId, setErrorDropzoneId] = useState<1 | 2 | null>(null)
 	const [taskId, setTaskId] = useState<string | null>(null)
 	const [transitionState, setTransitionState] = useState<
 		'idle' | 'exit' | 'enter'
@@ -41,7 +42,7 @@ const UploadManagementTab = () => {
 				if (latestData && latestData.success === true) {
 					setIsUploading(false)
 					clearInterval(interval)
-				} else if (latestData && latestData.success === false) {
+				} else if (latestData && latestData.result.includes('Error')) {
 					setIsUploading(false)
 					setIsErrorModalOpen(true)
 					clearInterval(interval)
@@ -116,9 +117,12 @@ const UploadManagementTab = () => {
 		setIsUploading(loading)
 	}
 
-	const handleError = (err: boolean) => {
+	const handleError = (err: boolean, dropzoneId?: 1 | 2) => {
 		setIsUploading(false)
 		setIsErrorModalOpen(err)
+		if (dropzoneId) {
+			setErrorDropzoneId(dropzoneId)
+		}
 	}
 
 	const handleTaskCreated = (id: string) => {
@@ -153,7 +157,7 @@ const UploadManagementTab = () => {
 				)}
 				{currentView === 'loader' && (
 					<TransitionWrapper className={getTransitionClasses()}>
-						<ProcessLoader activeTab={activeTab} />
+						<ProcessLoader activeTab={activeTab} />	
 					</TransitionWrapper>
 				)}
 				{currentView === 'taskInfo' && taskData && (
@@ -170,6 +174,7 @@ const UploadManagementTab = () => {
 			<ErrorModal
 				isOpen={isErrorModalOpen}
 				onClose={() => setIsErrorModalOpen(false)}
+				dropzoneId={errorDropzoneId || 1}
 			/>
 		</>
 	)
