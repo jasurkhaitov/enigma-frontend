@@ -5,6 +5,7 @@ import { Icons } from '../ui/icons/IconSvg'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import NavbarMenu from './NavbarMenu'
+import Logout from '../auth/logout/Logout'
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -24,12 +25,7 @@ export default function Navbar() {
 				<BrendLogo />
 
 				<div className='hidden md:flex items-center space-x-8'>
-					{/* <Link
-						to='/settings'
-						className='font-medium text-[16px] text-gray-700 hover:text-gray-900 transition-colors'
-					>
-						Settings
-					</Link> */}
+					{/* <Link to='/settings' className='font-medium text-[16px] text-gray-700 hover:text-gray-900 transition-colors'> Settings</Link> */}
 
 					<Link
 						to='/jobs'
@@ -37,6 +33,9 @@ export default function Navbar() {
 					>
 						History
 					</Link>
+					
+					<Logout/>
+
 					<Button
 						className='flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors'
 						onClick={() => navigate('/dashboard', { replace: true })}

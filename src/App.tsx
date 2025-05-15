@@ -14,7 +14,6 @@ const UsagePolicyPage = lazy(
 	() => import('./page/terms-agreement/UsagePolicyPage')
 )
 const LoginPage = lazy(() => import('./page/auth-flow/LoginPage'))
-// const SettingsPage = lazy(() => import('./page/main/SettingsPage'))
 const RegisterPage = lazy(() => import('./page/auth-flow/RegisterPage'))
 const VerifyPage = lazy(() => import('./page/auth-flow/VerifyPage'))
 const ResestPasswordPage = lazy(
@@ -25,6 +24,8 @@ const BrowsePage = lazy(() => import('./page/browse/BrowsePage'))
 import ProtectedRoute from './hooks/ProtectedRoute'
 import GuestRoute from './hooks/GuestRoute'
 import AnimatedLoader from './components/ui/icons/AnimatedLoader'
+
+// const SettingsPage = lazy(() => import('./page/main/SettingsPage'))
 // const ChatPage = lazy(() => import('./page/browse/ChatPage'));
 
 export default function App() {

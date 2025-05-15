@@ -11,7 +11,6 @@ const UploadManagementTab = () => {
 	const [isAnimating, setIsAnimating] = useState(false)
 	const [isUploading, setIsUploading] = useState(false)
 	const [isErrorModalOpen, setIsErrorModalOpen] = useState(false)
-	const [errorDropzoneId, setErrorDropzoneId] = useState<1 | 2 | null>(null)
 	const [taskId, setTaskId] = useState<string | null>(null)
 	const [transitionState, setTransitionState] = useState<
 		'idle' | 'exit' | 'enter'
@@ -39,23 +38,31 @@ const UploadManagementTab = () => {
 				const response = await refetch()
 				const latestData = response.data
 
-				if (latestData && latestData.success === true) {
-					setIsUploading(false)
-					clearInterval(interval)
-				} else if (latestData && latestData.result.includes('Error')) {
+				if (!latestData) return
+
+				// If error
+				if (
+					(latestData.success === null &&
+						latestData.result?.includes('Error')) ||
+					latestData.result?.includes('Error')
+				) {
 					setIsUploading(false)
 					setIsErrorModalOpen(true)
+					clearInterval(interval)
+				}
+				// If success
+				else if (latestData.success === true) {
+					setIsUploading(false)
 					clearInterval(interval)
 				}
 			} catch (error) {
 				const err = error as { data: { detail: string }; status: number }
 				console.error(`Error: ${err.data.detail} (Status: ${err.status})`)
-			
+
 				setIsUploading(false)
 				setIsErrorModalOpen(true)
 				clearInterval(interval)
 			}
-				
 		}
 
 		const interval = setInterval(pollTaskStatus, 1000)
@@ -98,7 +105,12 @@ const UploadManagementTab = () => {
 
 		if (isUploading) {
 			handleViewTransition('loader')
-		} else if (!isUploading && taskId && taskData) {
+		} else if (
+			!isUploading &&
+			taskId &&
+			taskData &&
+			taskData.success === true
+		) {
 			handleViewTransition('taskInfo')
 		} else if (!isUploading && !taskId) {
 			handleViewTransition('main')
@@ -117,12 +129,9 @@ const UploadManagementTab = () => {
 		setIsUploading(loading)
 	}
 
-	const handleError = (err: boolean, dropzoneId?: 1 | 2) => {
+	const handleError = (err: boolean) => {
 		setIsUploading(false)
 		setIsErrorModalOpen(err)
-		if (dropzoneId) {
-			setErrorDropzoneId(dropzoneId)
-		}
 	}
 
 	const handleTaskCreated = (id: string) => {
@@ -157,24 +166,28 @@ const UploadManagementTab = () => {
 				)}
 				{currentView === 'loader' && (
 					<TransitionWrapper className={getTransitionClasses()}>
-						<ProcessLoader activeTab={activeTab} />	
+						<ProcessLoader activeTab={activeTab} />
 					</TransitionWrapper>
 				)}
-				{currentView === 'taskInfo' && taskData && (
-					<TransitionWrapper className={getTransitionClasses()}>
-						<TaskInformation
-							loading={isFetching}
-							id={taskId}
-							time={taskData.enqueue_time}
-							name={taskData.args[0].name}
-						/>
-					</TransitionWrapper>
-				)}
+				{currentView === 'taskInfo' &&
+					taskData &&
+					taskData.success === true && (
+						<TransitionWrapper className={getTransitionClasses()}>
+							<TaskInformation
+								loading={isFetching}
+								id={taskId}
+								time={taskData.enqueue_time}
+								name={taskData.args[0].name}
+							/>
+						</TransitionWrapper>
+					)}
 			</div>
 			<ErrorModal
 				isOpen={isErrorModalOpen}
-				onClose={() => setIsErrorModalOpen(false)}
-				dropzoneId={errorDropzoneId || 1}
+				onClose={() => {
+					setIsErrorModalOpen(false)
+					setTaskId(null)
+				}}
 			/>
 		</>
 	)

@@ -13,6 +13,9 @@ export default function VerifyPage() {
 	const state = location.state || {}
 
 	if (!state.path || (state.path !== 'login' && state.path !== 'register')) {
+		if (state.path === 'register') {
+			return <Navigate to='/register' replace />
+		}
 		return <Navigate to='/login' replace />
 	}
 

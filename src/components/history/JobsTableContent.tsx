@@ -30,10 +30,24 @@ export function JobsTableContent({
 		return statusVariantMap[lowercaseStatus] || 'processing'
 	}
 
-	const getFileName = (path: string | null | undefined): string => {
-		if (!path) return 'File Not Exist'
-		return path.split('/').pop() || 'File Not Exist'
-	}	
+	const getFileName = (url: string | null | undefined): string => {
+		if (!url) return 'File Not Exist'
+	
+		const filenameMatch = url.match(/filename%3D%22([^"]+)%22/)
+	
+		if (filenameMatch && filenameMatch[1]) {
+			const decodedFileName = decodeURIComponent(decodeURIComponent(filenameMatch[1]))
+			return decodedFileName
+		}
+	
+		// Fallback: get the last part after /
+		const fallbackName = url.split('/').pop() || 'File Not Exist'
+		return fallbackName
+	}
+	
+	
+	
+	
 
 	return (
 		<>
