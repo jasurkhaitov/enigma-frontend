@@ -6,7 +6,7 @@ import Footer from '@/components/shared/Footer'
 export default function MainPage() {
   useEffect(() => {
     document.title = 'Enigma - Compare Text and Word Documents'
-  })
+  }, [])
   
   return (
     <div className='w-full min-h-screen'>

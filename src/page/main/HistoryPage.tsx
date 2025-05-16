@@ -9,7 +9,7 @@ export default function HistoryPage() {
 	const itemsPerPageParam = searchParams.get('items_per_page')
 
 	const [itemsPerPage, setItemsPerPage] = useState(
-		itemsPerPageParam ? parseInt(itemsPerPageParam, 10) : 10
+		itemsPerPageParam ? parseInt(itemsPerPageParam, 10) : 10	
 	)
 
 	useEffect(() => {
