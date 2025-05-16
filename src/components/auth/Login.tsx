@@ -13,13 +13,13 @@ import { Loader } from 'lucide-react'
 const Login = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	const { email, password, emailError, passwordError } = useAppSelector(
+	const { username, password, usernameError, passwordError } = useAppSelector(
 		state => state.auth
 	)
 	const [login, { isLoading }] = useLoginMutation()
 
 	const handleLogin = async () => {
-		if (!email) {
+		if (!username) {
 			toast.error('Please enter your username')
 			return
 		}
@@ -27,17 +27,17 @@ const Login = () => {
 			toast.error('Please enter your password')
 			return
 		}
-		if (emailError) {
-			toast.error(emailError || 'Invalid username format')
+		if (usernameError) {
+			toast.error(usernameError || 'Invalid username format')
 			return
 		}
 		if (passwordError) {
 			toast.error(passwordError || 'Invalid password format')
 			return
 		}
-		if (!emailError && !passwordError && email && password) {
+		if (!usernameError && !passwordError && username && password) {
 			try {
-				const response = await login({ username: email, password }).unwrap()
+				const response = await login({ username: username, password }).unwrap()
 				if (response) {
 					toast.success('Login successful !')
 					dispatch(setAccessToken(response.access_token))
