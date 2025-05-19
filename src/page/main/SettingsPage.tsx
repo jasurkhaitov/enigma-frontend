@@ -1,12 +1,8 @@
-import { useEffect } from 'react'
 import Navbar from '../../components/shared/Navbar'
 import ChangeEmail from '@/components/settings/ChangeEmail'
 import ChangePassword from '@/components/settings/ChangePassword'
 
 export default function SettingsPage() {
-  useEffect(() => {
-    document.title = 'Change Your Settings'
-  }, [])
 
   return (
     <>

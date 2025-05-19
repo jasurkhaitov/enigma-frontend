@@ -1,13 +1,9 @@
-import { useEffect } from 'react'
 import AuthHeader from '../../components/shared/AuthHeader'
 import Carousel from '../../components/shared/Carousel'
 import Verify from '@/components/verify/Verify'
 import { Navigate, useLocation } from 'react-router-dom'
 
 export default function VerifyPage() {
-	useEffect(() => {
-		document.title = 'Verify your account.'
-	}, [])
 
 	const location = useLocation()
 	const state = location.state || {}

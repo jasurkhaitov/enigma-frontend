@@ -15,6 +15,7 @@ interface AuthState {
   emailError: string
   passwordError: string
   accessToken: string | null
+  isAuthenticated: boolean
 }
 
 const initialState: AuthState = {
@@ -31,9 +32,11 @@ const initialState: AuthState = {
   usernameError: '',
   emailError: '',
   passwordError: '',
-  accessToken: null,
+  accessToken: localStorage.getItem('accessToken'),
+  isAuthenticated: false,
 }
 
+// Validation functions
 const validateName = (name: string): string => {
   if (!name) return 'Name is required'
   if (name.length < 3) return 'Name must be at least 3 characters'
@@ -56,8 +59,8 @@ const validateUsername = (username: string): string => {
 const validateEmail = (email: string): string => {
   if (!email) {
     return 'Email is required'
-  } 	
-  
+  }
+
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return 'Please enter a valid email address'
   }
@@ -108,13 +111,26 @@ const authSlice = createSlice({
       state.passwordError = validatePassword(state.password)
     },
     resetForm: () => {
-      return initialState
+      return {
+        ...initialState,
+        accessToken: localStorage.getItem('accessToken'),
+        isAuthenticated: initialState.isAuthenticated
+      }
     },
     setAccessToken: (state, action: PayloadAction<string>) => {
+      // Save to localStorage
+      localStorage.setItem('accessToken', action.payload)
       state.accessToken = action.payload
+      state.isAuthenticated = true
+    },
+    setAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload
     },
     logout: state => {
+      // Remove from localStorage
+      localStorage.removeItem('accessToken')
       state.accessToken = null
+      state.isAuthenticated = false
     },
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload
@@ -141,6 +157,7 @@ export const {
   setPasswordFocused,
   validateForm,
   setAccessToken,
+  setAuthenticated,
   resetForm,
   logout,
   setName,

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import Footer from '../../components/shared/Footer'
 import NavbarWithoutAuth from '../../components/shared/NavbarWithoutAuth'
 import UsagePolicy from '@/components/terms/UsagePolicy'
@@ -6,10 +6,6 @@ import { MyGlobalContext } from '@/hooks/useContext'
 import Navbar from '@/components/shared/Navbar'
 
 export default function UsagePolicyPage() {
-	useEffect(() => {
-		document.title = 'Enigma Usage Policy'
-	})
-
 	const { login } = useContext(MyGlobalContext)
 
 	return (

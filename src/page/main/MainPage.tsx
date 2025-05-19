@@ -1,12 +1,8 @@
-import { useEffect } from 'react'
 import Navbar from '../../components/shared/Navbar'
 import UploadManagementTab from '@/components/main/UploadManagemenTab'
 import Footer from '@/components/shared/Footer'
 
 export default function MainPage() {
-  useEffect(() => {
-    document.title = 'Enigma - Compare Text and Word Documents'
-  }, [])
   
   return (
     <div className='w-full min-h-screen'>

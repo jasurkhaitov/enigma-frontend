@@ -1,8 +1,6 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { useAppSelector } from '@/store'
 import { useNavigate } from 'react-router-dom'
-import { useRefreshAuth } from '@/service/refreshAuth'
 import BrendLogo from '../ui/icons/BrendLogo'
 import HeroSection from './HeroSection'
 import FixedNav from './header/FixedNav'
@@ -10,49 +8,23 @@ import DesktopNav from './header/DesktopNav'
 import AuthButton from './header/AuthButton'
 import MobileNavOverlay from './header/MobileNavOverlay'
 import MobileNav from './header/MobileNav'
+import useAuth from '@/hooks/useAuth'
 
 export default function BrowseHeader() {
 	const [activeItem, setActiveItem] = useState('Home')
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-	const [isAuthenticated, setIsAuthenticated] = useState(false)
-	const [isLoading, setIsLoading] = useState(true)
 	const [showFixedNav, setShowFixedNav] = useState(false)
 
-	const { accessToken } = useAppSelector(state => state.auth)
-	const { refreshAccessToken } = useRefreshAuth()
+	const { isAuthenticated, isLoading } = useAuth()
 	const navigate = useNavigate()
 
-	const navItems = useMemo(
-		() => [
-			{ name: 'Home', id: 'home' },
-			{ name: 'Dashboard', id: 'dashboard' },
-			{ name: 'About us', id: 'about-us' },
-			{ name: 'Possibilities', id: 'possibilities' },
-		],
-		[]
-	)
-
-	useEffect(() => {
-		const checkAuthentication = async () => {
-			if (accessToken) {
-				setIsAuthenticated(true)
-				setIsLoading(false)
-				return
-			}
-
-			try {
-				const { success } = await refreshAccessToken()
-				setIsAuthenticated(success)
-			} catch (error) {
-				console.error('Authentication check failed:', error)
-				setIsAuthenticated(false)
-			} finally {
-				setIsLoading(false)
-			}
-		}
-
-		checkAuthentication()
-	}, [accessToken, refreshAccessToken])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const navItems = [
+		{ name: 'Home', id: 'home' },
+		{ name: 'Dashboard', id: 'dashboard' },
+		{ name: 'About us', id: 'about-us' },
+		{ name: 'Possibilities', id: 'possibilities' },
+	]
 
 	useEffect(() => {
 		document.body.style.overflow = mobileMenuOpen ? 'hidden' : 'auto'

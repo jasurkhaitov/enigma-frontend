@@ -1,14 +1,9 @@
-import { useEffect } from 'react'
 import AuthHeader from '../../components/shared/AuthHeader'
 import Carousel from '../../components/shared/Carousel'
 import TermsAgreement from '../../components/terms/TermsAgreement'
 import Register from '@/components/auth/Register'
 
 export default function RegisterPage() {
-	useEffect(() => {
-		document.title =
-			'Create an account to unlock powerful features, manage your data, and get started effortlessly'
-	}, [])
 
 	return (
 		<div className='w-full h-screen flex items-center gap-0'>

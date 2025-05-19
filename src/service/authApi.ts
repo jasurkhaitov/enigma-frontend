@@ -1,36 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../store'
 import {
-	LoginRequest,
-	LoginResponse,
-	RefreshTokenResponse,
+  LoginRequest,
+  LoginResponse,
+  RefreshTokenResponse,
+  RegisterRequest,
+  RegisterResponse,
+  VerifyCodeRequest,
+  VerifyCodeResponse,
+  UserProfileResponse,
 } from '@/typescript/type'
-
-export interface RegisterRequest {
-  name: string
-  username: string
-  email: string
-  password: string
-}
-
-export interface VerifyCodeRequest {
-  code: string
-}
-
-export interface RegisterResponse {
-  id: string
-}
-
-export interface VerifyCodeResponse {
-  success: boolean
-  message: string
-}
-
-export interface ErrorResponse {
-  data: {
-    detail: string
-  }
-}
 
 const BASE_URL: string = import.meta.env.VITE_API_BASE_URL
 
@@ -40,8 +19,10 @@ export const authApi = createApi({
     baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.accessToken
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`)
+      const storedToken = localStorage.getItem('accessToken')
+      
+      if (token || storedToken) {
+        headers.set('Authorization', `Bearer ${token || storedToken}`)
       }
       return headers
     },
@@ -101,6 +82,13 @@ export const authApi = createApi({
         credentials: 'include',
       }),
     }),
+    checkMe: builder.query<UserProfileResponse, void>({
+      query: () => ({
+        url: '/me',
+        method: 'GET',
+        credentials: 'include',
+      }),
+    }),
   }),
 })
 
@@ -109,5 +97,7 @@ export const {
   useRegisterMutation,
   useVerifyCodeMutation,
   useRefreshTokenMutation,
-  useLogoutMutation
+  useLogoutMutation,
+  useCheckMeQuery,
+  useLazyCheckMeQuery
 } = authApi

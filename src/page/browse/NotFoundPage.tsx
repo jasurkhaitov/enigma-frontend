@@ -1,14 +1,10 @@
 import notFoundImg from '../../assets/web/notFound.webp'
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../../components/shared/Navbar'
 import { ArrowLeft, Home } from 'lucide-react'
 import Badge from '../../components/ui/badge'
 
 export default function NotFoundPage() {
-	useEffect(() => {
-		document.title = "The page you're looking for doesn't exist"
-	}, [])
 
 	return (
 		<div className='w-full min-h-screen'>

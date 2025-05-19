@@ -1,11 +1,7 @@
-import { useEffect } from 'react'
 import Navbar from '../../components/shared/Navbar'
 import ChatDemo from '@/components/chat/ChatDemo'
 
 export default function ChatPage() {
-	useEffect(() => {
-		document.title = 'Chat Translation'
-	}, [])
 
 	return (
 		<>

@@ -96,3 +96,37 @@ export interface LoginResponse {
 export interface RefreshTokenResponse {
 	access_token: string
 }
+
+export interface RegisterRequest {
+  name: string
+  username: string
+  email: string
+  password: string
+}
+
+export interface VerifyCodeRequest {
+  code: string
+}
+
+export interface RegisterResponse {
+  id: string
+}
+
+export interface VerifyCodeResponse {
+  success: boolean
+  message: string
+}
+
+export interface ErrorResponse {
+  data: {
+    detail: string
+  }
+}
+
+export interface UserProfileResponse {
+  name: string
+  username: string
+  email: string
+  profile_image_url: string
+  uuid: string
+}

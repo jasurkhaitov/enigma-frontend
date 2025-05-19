@@ -2,12 +2,8 @@ import BrowseFooter from '@/components/browse/BrowseFooter'
 import BrowseHeader from '@/components/browse/BrowseHeader'
 import BrowseMain from '@/components/browse/BrowseMain'
 import BrowsePossibility from '@/components/browse/BrowsePossibility'
-import { useEffect } from 'react'
 
 export default function BrowsePage() {
-	useEffect(() => {
-		document.title = 'Enigma - Verify translations with AI'
-	}, [])
 
 	return (
 		<div className='w-full'>

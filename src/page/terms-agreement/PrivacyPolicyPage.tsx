@@ -1,14 +1,11 @@
 import PrivacyPolicy from '../../components/terms/PrivacyPolicy'
 import Footer from '../../components/shared/Footer'
 import NavbarWithoutAuth from '../../components/shared/NavbarWithoutAuth'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { MyGlobalContext } from '@/hooks/useContext'
 import Navbar from '@/components/shared/Navbar'
 
 export default function PrivacyPolicyPage() {
-	useEffect(() => {
-		document.title = 'Privacy Policy & Data Protection'
-	})
 
 	const { login } = useContext(MyGlobalContext)
 

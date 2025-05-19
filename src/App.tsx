@@ -21,8 +21,8 @@ const ResestPasswordPage = lazy(
 )
 const BrowsePage = lazy(() => import('./page/browse/BrowsePage'))
 
-import ProtectedRoute from './hooks/ProtectedRoute'
-import GuestRoute from './hooks/GuestRoute'
+import ProtectedRoute from './routes/ProtectedRoute'
+import GuestRoute from './routes/GuestRoute'
 import AnimatedLoader from './components/ui/icons/AnimatedLoader'
 
 // const SettingsPage = lazy(() => import('./page/main/SettingsPage'))

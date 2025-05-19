@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useAppSelector } from '@/store'
-import { useRefreshAuth } from '@/service/refreshAuth'
 import { useGetJobsQuery } from '@/service/jobsApi'
 import { PaginationHistory } from './PaginationHistory'
 import { Table, TableBody, TableHeader } from '@/components/ui/table'
@@ -9,6 +7,7 @@ import { JobsTableHeader } from './JobsTableHeader'
 import { LoadingTableRow } from './LoadingTableRow'
 import { JobsTableContent } from './JobsTableContent'
 import { ErrorDisplay } from './ErrorDisplay'
+import useAuth from '@/hooks/useAuth'
 
 export interface Job {
 	id: string
@@ -36,8 +35,7 @@ export default function HistoryTable({
 	onItemsPerPageChange,
 }: HistoryTableProps) {
 	const [searchParams, setSearchParams] = useSearchParams()
-	const accessToken = useAppSelector(state => state.auth.accessToken)
-	const { refreshAccessToken } = useRefreshAuth()
+	const { isAuthenticated, checkAuthStatus } = useAuth()
 
 	const pageParam = searchParams.get('page')
 	const itemsPerPageParam = searchParams.get('items_per_page')
@@ -81,16 +79,17 @@ export default function HistoryTable({
 	const totalPages = Math.ceil(totalCount / itemsPerPage)
 
 	useEffect(() => {
-		const fetchWithToken = async () => {
-			if (!accessToken) {
-				const result = await refreshAccessToken()
-				if (result.success) {
+		const verifyAuth = async () => {
+			if (!isAuthenticated) {
+				const authResult = await checkAuthStatus()
+				if (authResult) {
 					refetch()
 				}
 			}
 		}
-		fetchWithToken()
-	}, [accessToken, refreshAccessToken, refetch])
+
+		verifyAuth()
+	}, [isAuthenticated, checkAuthStatus, refetch])
 
 	useEffect(() => {
 		if (!isPageInitialized) {

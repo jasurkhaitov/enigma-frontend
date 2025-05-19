@@ -1,14 +1,11 @@
 import ConsumerTerms from '@/components/terms/ConsumerTerms'
 import Footer from '../../components/shared/Footer'
 import NavbarWithoutAuth from '../../components/shared/NavbarWithoutAuth'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { MyGlobalContext } from '@/hooks/useContext'
 import Navbar from '@/components/shared/Navbar'
 
 export default function ConsumerTermsPage() {
-	useEffect(() => {
-		document.title = 'Consumer Terms & Conditions'
-	}, [])
 
 	const { login } = useContext(MyGlobalContext)
 

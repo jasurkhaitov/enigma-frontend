@@ -16,12 +16,12 @@ const baseQuery = fetchBaseQuery({
 	credentials: 'include',
 	prepareHeaders: (headers, { getState }) => {
 		const state = getState() as RootState
-		const token = state.auth.accessToken
+		const token = state.auth.accessToken || localStorage.getItem('accessToken')
 		headers.set('accept', 'application/json')
 		if (token) {
 			headers.set('Authorization', `Bearer ${token}`)
 		}
-		return headers
+		return headers;
 	},
 })
 

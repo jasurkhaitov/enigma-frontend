@@ -1,13 +1,9 @@
-import { useEffect } from 'react'
 import Login from '../../components/auth/Login'
 import AuthHeader from '../../components/shared/AuthHeader'
 import Carousel from '../../components/shared/Carousel'
 import TermsAgreement from '../../components/terms/TermsAgreement'
 
 export default function LoginPage() {
-	useEffect(() => {
-		document.title = 'Log in to access your account, explore your data, and continue working seamlessly.'
-	}, [])
 
 	return (
 		<div className='w-full h-screen flex items-center gap-0'>

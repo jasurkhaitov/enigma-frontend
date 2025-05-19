@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import HistoryTable from '../../components/history/HistoryTable'
 import Navbar from '../../components/shared/Navbar'
@@ -11,10 +11,6 @@ export default function HistoryPage() {
 	const [itemsPerPage, setItemsPerPage] = useState(
 		itemsPerPageParam ? parseInt(itemsPerPageParam, 10) : 10	
 	)
-
-	useEffect(() => {
-		document.title = 'Document Upload History'
-	}, [])
 
 	const handleItemsPerPageChange = (newItemsPerPage: number) => {
 		setItemsPerPage(newItemsPerPage)
