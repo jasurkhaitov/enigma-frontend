@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 import BrendLogo from '../ui/icons/BrendLogo'
 import { Button } from '../ui/button'
 import { Icons } from '../ui/icons/IconSvg'
@@ -33,8 +33,8 @@ export default function Navbar() {
 					>
 						History
 					</Link>
-					
-					<Logout/>
+
+					<Logout />
 
 					<Button
 						className='flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors'

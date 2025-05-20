@@ -1,5 +1,5 @@
 import BrendLogo from '../ui/icons/BrendLogo'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 const Footer = ({ termPage }: { termPage: string }) => {
 	return (

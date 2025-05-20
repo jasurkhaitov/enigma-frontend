@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 import { Button } from '../ui/button'
 import { Icons } from '../ui/icons/IconSvg'
 import { History, LogOutIcon, X } from 'lucide-react'

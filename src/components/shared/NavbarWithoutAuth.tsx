@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 import BrendLogo from '../ui/icons/BrendLogo'
 import { Button } from '../ui/button'
 import { CircleHelp, UserPlus, Menu, X } from 'lucide-react'

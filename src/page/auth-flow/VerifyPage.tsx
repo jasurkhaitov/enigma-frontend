@@ -1,10 +1,9 @@
+import { Navigate, useLocation } from 'react-router'
 import AuthHeader from '../../components/shared/AuthHeader'
 import Carousel from '../../components/shared/Carousel'
 import Verify from '@/components/verify/Verify'
-import { Navigate, useLocation } from 'react-router-dom'
 
 export default function VerifyPage() {
-
 	const location = useLocation()
 	const state = location.state || {}
 

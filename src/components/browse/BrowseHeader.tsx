@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import BrendLogo from '../ui/icons/BrendLogo'
 import HeroSection from './HeroSection'
 import FixedNav from './header/FixedNav'

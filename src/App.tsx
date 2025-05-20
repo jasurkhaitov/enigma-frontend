@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router'
 import { lazy, Suspense } from 'react'
 
 const MainPage = lazy(() => import('./page/main/MainPage'))
@@ -42,7 +42,7 @@ export default function App() {
 					<Route path='*' element={<NotFoundPage />} />
 
 					<Route path='/' element={<BrowsePage />} />
-					
+
 					<Route element={<GuestRoute />}>
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<RegisterPage />} />

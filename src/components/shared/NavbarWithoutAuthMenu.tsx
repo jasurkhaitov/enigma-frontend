@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 import BrendLogo from '../ui/icons/BrendLogo'
 import { CircleHelp, User, UserPlus, X } from 'lucide-react'
 import { Button } from '../ui/button'

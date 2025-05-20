@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 import HistoryTable from '../../components/history/HistoryTable'
 import Navbar from '../../components/shared/Navbar'
 import { ItemsPerPageSelector } from '@/components/history/ItemsPerPageSelector'
@@ -9,7 +9,7 @@ export default function HistoryPage() {
 	const itemsPerPageParam = searchParams.get('items_per_page')
 
 	const [itemsPerPage, setItemsPerPage] = useState(
-		itemsPerPageParam ? parseInt(itemsPerPageParam, 10) : 10	
+		itemsPerPageParam ? parseInt(itemsPerPageParam, 10) : 10
 	)
 
 	const handleItemsPerPageChange = (newItemsPerPage: number) => {

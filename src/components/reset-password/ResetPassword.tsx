@@ -4,7 +4,7 @@ import PasswordValidation from '../shared/PasswordValidation'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 export default function ResetPassword() {
 	const [showNewPassword, setShowNewPassword] = useState(false)

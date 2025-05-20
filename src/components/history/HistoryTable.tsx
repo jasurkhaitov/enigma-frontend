@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 import { useGetJobsQuery } from '@/service/jobsApi'
 import { PaginationHistory } from './PaginationHistory'
 import { Table, TableBody, TableHeader } from '@/components/ui/table'

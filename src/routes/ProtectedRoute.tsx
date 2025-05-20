@@ -1,34 +1,34 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router'
 import { useEffect, useState } from 'react'
 import AnimatedLoader from '@/components/ui/icons/AnimatedLoader'
 import { useAuth } from '@/hooks/useAuth'
 
 const ProtectedRoute = () => {
-  const { isAuthenticated, isLoading, checkAuthStatus } = useAuth()
-  const [authChecked, setAuthChecked] = useState(false)
+	const { isAuthenticated, isLoading, checkAuthStatus } = useAuth()
+	const [authChecked, setAuthChecked] = useState(false)
 
-  useEffect(() => {
-    const verifyAuthStatus = async () => {
-      await checkAuthStatus()
-      setAuthChecked(true)
-    }
+	useEffect(() => {
+		const verifyAuthStatus = async () => {
+			await checkAuthStatus()
+			setAuthChecked(true)
+		}
 
-    verifyAuthStatus()
-  }, [checkAuthStatus])
+		verifyAuthStatus()
+	}, [checkAuthStatus])
 
-  if (isLoading || !authChecked) {
-    return (
-      <div className='w-full h-screen flex items-center justify-center'>
-        <AnimatedLoader />
-      </div>
-    )
-  }
+	if (isLoading || !authChecked) {
+		return (
+			<div className='w-full h-screen flex items-center justify-center'>
+				<AnimatedLoader />
+			</div>
+		)
+	}
 
-  if (!isAuthenticated) {
-    return <Navigate to='/login' replace />
-  }
+	if (!isAuthenticated) {
+		return <Navigate to='/login' replace />
+	}
 
-  return <Outlet />
+	return <Outlet />
 }
 
 export default ProtectedRoute

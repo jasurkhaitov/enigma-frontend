@@ -1,20 +1,20 @@
 import BrendLogo from '../ui/icons/BrendLogo'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export default function BrowseFooter() {
 	const scrollToSection = (id: string) => {
-		const element = document.getElementById(id);
+		const element = document.getElementById(id)
 		if (element) {
-			const headerOffset = 0; // Adjust based on your header height
-			const elementPosition = element.getBoundingClientRect().top;
-			const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-			
+			const headerOffset = 0 // Adjust based on your header height
+			const elementPosition = element.getBoundingClientRect().top
+			const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
 			window.scrollTo({
 				top: offsetPosition,
-				behavior: 'smooth'
-			});
+				behavior: 'smooth',
+			})
 		}
-	};
+	}
 
 	return (
 		<div className='p-6 sm:p-12 lg:p-24 w-full bg-[linear-gradient(180deg,_#575DEB_0%,_#313585_100%)] rounded-t-xl sm:rounded-t-2xl lg:rounded-t-4xl'>
@@ -59,25 +59,25 @@ export default function BrowseFooter() {
 					<h3 className='text-lg sm:text-xl text-white font-bold'>Menu</h3>
 
 					<ul className='flex flex-col gap-2'>
-						<li 
+						<li
 							className='text-sm sm:text-base font-medium text-white cursor-pointer hover:underline'
 							onClick={() => scrollToSection('home')}
 						>
 							Home
 						</li>
-						<li 
+						<li
 							className='text-sm sm:text-base font-medium text-white cursor-pointer hover:underline'
 							onClick={() => scrollToSection('dashboard')}
 						>
 							Dashboard
 						</li>
-						<li 
+						<li
 							className='text-sm sm:text-base font-medium text-white cursor-pointer hover:underline'
 							onClick={() => scrollToSection('about-us')}
 						>
 							About us
 						</li>
-						<li 
+						<li
 							className='text-sm sm:text-base font-medium text-white cursor-pointer hover:underline'
 							onClick={() => scrollToSection('possibilities')}
 						>

@@ -1,10 +1,9 @@
 import AuthHeader from '../../components/shared/AuthHeader'
 import Carousel from '../../components/shared/Carousel'
 import ResetPassword from '@/components/reset-password/ResetPassword'
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router'
 
 export default function ResestPasswordPage() {
-
 	const location = useLocation()
 
 	if (!location.state) return <Navigate to='/login' replace />

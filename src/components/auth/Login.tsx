@@ -1,6 +1,6 @@
 import { useLoginMutation } from '@/service/authApi'
 import { useAppSelector, useAppDispatch } from '@/store'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
 import { setAccessToken } from '@/reducer/authSlice'

@@ -1,11 +1,10 @@
 import notFoundImg from '../../assets/web/notFound.webp'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import Navbar from '../../components/shared/Navbar'
 import { ArrowLeft, Home } from 'lucide-react'
 import Badge from '../../components/ui/badge'
 
 export default function NotFoundPage() {
-
 	return (
 		<div className='w-full min-h-screen'>
 			<div className='fixed top-0 left-0 w-full z-10'>
