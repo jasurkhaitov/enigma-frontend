@@ -41,9 +41,8 @@ export default function App() {
 				<Routes>
 					<Route path='*' element={<NotFoundPage />} />
 
-					<Route path='/' element={<BrowsePage />} />
-
 					<Route element={<GuestRoute />}>
+						<Route path='/' element={<BrowsePage />} />
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<RegisterPage />} />
 						<Route path='/verify' element={<VerifyPage />} />

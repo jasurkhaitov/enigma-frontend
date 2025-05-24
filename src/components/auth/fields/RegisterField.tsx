@@ -3,17 +3,14 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tooltip } from '@/components/ui/tooltip'
 import { useAppDispatch, useAppSelector } from '@/store'
-import { setName, setUsername, setNameFocused, setUsernameFocused } from '@/reducer/authSlice'
+import { setName, setNameFocused } from '@/reducer/authSlice'
 
 export default function RegisterField() {
   const dispatch = useAppDispatch()
   const { 
-    name, 
-    username, 
+    name,
     nameError, 
-    usernameError,
     isNameFocused,
-    isUsernameFocused 
   } = useAppSelector(state => state.auth)
   
   return (
@@ -38,30 +35,6 @@ export default function RegisterField() {
             placeholder='Enter your name'
             className='relative mt-2'
             hasError={!!nameError}
-          />
-        </Tooltip>
-      </div>
-      
-      <div className='flex flex-col w-full'>
-        <Label htmlFor='username' required>
-          Username
-        </Label>
-        <Tooltip 
-          text={usernameError} 
-          isVisible={isUsernameFocused && !!usernameError} 
-          position='top' 
-          variant='error'
-        >
-          <Input
-            type='text'
-            id='username'
-            value={username}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(setUsername(e.target.value))}
-            onFocus={() => dispatch(setUsernameFocused(true))}
-            onBlur={() => dispatch(setUsernameFocused(false))}
-            placeholder='Enter your username'
-            className='relative mt-2'
-            hasError={!!usernameError}
           />
         </Tooltip>
       </div>

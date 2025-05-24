@@ -5,10 +5,10 @@ import BrendLogo from '../ui/icons/BrendLogo'
 import HeroSection from './HeroSection'
 import FixedNav from './header/FixedNav'
 import DesktopNav from './header/DesktopNav'
-import AuthButton from './header/AuthButton'
 import MobileNavOverlay from './header/MobileNavOverlay'
 import MobileNav from './header/MobileNav'
 import useAuth from '@/hooks/useAuth'
+import LoginRegisterButton from './header/LoginRegisterButton'
 
 export default function BrowseHeader() {
 	const [activeItem, setActiveItem] = useState('Home')
@@ -109,7 +109,7 @@ export default function BrowseHeader() {
 						/>
 					</div>
 
-					<AuthButton
+					<LoginRegisterButton
 						isLoading={isLoading}
 						isAuthenticated={isAuthenticated}
 						onClick={handleAuthAction}

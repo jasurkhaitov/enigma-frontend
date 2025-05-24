@@ -58,6 +58,8 @@ export default function HistoryTable({
 	const { data, error, isLoading, refetch } = useGetJobsQuery({
 		page,
 		items_per_page: itemsPerPage,
+	}, {
+		skip: !isAuthenticated // Skip query if not authenticated
 	})
 
 	const exampleData: Job[] = [
@@ -82,14 +84,15 @@ export default function HistoryTable({
 		const verifyAuth = async () => {
 			if (!isAuthenticated) {
 				const authResult = await checkAuthStatus()
-				if (authResult) {
+				// Only refetch if authentication is successful and query is not skipped
+				if (authResult && data !== undefined) {
 					refetch()
 				}
 			}
 		}
 
 		verifyAuth()
-	}, [isAuthenticated, checkAuthStatus, refetch])
+	}, [isAuthenticated, checkAuthStatus, refetch, data])
 
 	useEffect(() => {
 		if (!isPageInitialized) {
@@ -164,7 +167,11 @@ export default function HistoryTable({
 		params.set('page', '1')
 
 		setSearchParams(params, { replace: true })
-		refetch()
+		
+		// Only refetch if authenticated and query is active
+		if (isAuthenticated && data !== undefined) {
+			refetch()
+		}
 	}
 
 	if (error) return <ErrorDisplay error={error} onRetry={() => refetch()} />

@@ -23,9 +23,7 @@ export default function Verify({ path }: VerifyProps) {
 
 	const handleVerify = async () => {
 		try {
-			const res = await verifyCode({ code: otpValue }).unwrap()
-
-			console.log(res)
+			await verifyCode({ code: otpValue }).unwrap()
 
 			setVerificationStatus({
 				error: false,

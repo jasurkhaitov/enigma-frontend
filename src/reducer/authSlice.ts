@@ -5,15 +5,19 @@ interface AuthState {
   username: string
   email: string
   password: string
+  regPassword: string
   showPassword: boolean
+  showRegPassword: boolean
   isNameFocused: boolean
   isUsernameFocused: boolean
   isEmailFocused: boolean
   isPasswordFocused: boolean
+  isRegPasswordFocused: boolean
   nameError: string
   usernameError: string
   emailError: string
   passwordError: string
+  regPasswordError: string
   accessToken: string | null
   isAuthenticated: boolean
 }
@@ -23,20 +27,23 @@ const initialState: AuthState = {
   username: '',
   email: '',
   password: '',
+  regPassword: '',
   showPassword: false,
+  showRegPassword: false,
   isNameFocused: false,
   isUsernameFocused: false,
   isEmailFocused: false,
   isPasswordFocused: false,
+  isRegPasswordFocused: false,
   nameError: '',
   usernameError: '',
   emailError: '',
   passwordError: '',
+  regPasswordError: '',
   accessToken: localStorage.getItem('accessToken'),
   isAuthenticated: false,
 }
 
-// Validation functions
 const validateName = (name: string): string => {
   if (!name) return 'Name is required'
   if (name.length < 3) return 'Name must be at least 3 characters'
@@ -95,8 +102,15 @@ const authSlice = createSlice({
       state.password = action.payload
       state.passwordError = validatePassword(action.payload)
     },
+    setRegPassword: (state, action: PayloadAction<string>) => {
+      state.regPassword = action.payload
+      state.regPasswordError = validatePassword(action.payload)
+    },
     toggleShowPassword: state => {
       state.showPassword = !state.showPassword
+    },
+    toggleShowRegPassword: state => {
+      state.showRegPassword = !state.showRegPassword
     },
     setEmailFocused: (state, action: PayloadAction<boolean>) => {
       state.isEmailFocused = action.payload
@@ -104,11 +118,15 @@ const authSlice = createSlice({
     setPasswordFocused: (state, action: PayloadAction<boolean>) => {
       state.isPasswordFocused = action.payload
     },
+    setRegPasswordFocused: (state, action: PayloadAction<boolean>) => {
+      state.isRegPasswordFocused = action.payload
+    },
     validateForm: state => {
       state.nameError = validateName(state.name)
       state.usernameError = validateUsername(state.username)
       state.emailError = validateEmail(state.email)
       state.passwordError = validatePassword(state.password)
+      state.regPasswordError = validatePassword(state.regPassword)
     },
     resetForm: () => {
       return {
@@ -118,7 +136,6 @@ const authSlice = createSlice({
       }
     },
     setAccessToken: (state, action: PayloadAction<string>) => {
-      // Save to localStorage
       localStorage.setItem('accessToken', action.payload)
       state.accessToken = action.payload
       state.isAuthenticated = true
@@ -127,7 +144,6 @@ const authSlice = createSlice({
       state.isAuthenticated = action.payload
     },
     logout: state => {
-      // Remove from localStorage
       localStorage.removeItem('accessToken')
       state.accessToken = null
       state.isAuthenticated = false
@@ -152,9 +168,12 @@ const authSlice = createSlice({
 export const {
   setEmail,
   setPassword,
+  setRegPassword,
   toggleShowPassword,
+  toggleShowRegPassword,
   setEmailFocused,
   setPasswordFocused,
+  setRegPasswordFocused,
   validateForm,
   setAccessToken,
   setAuthenticated,

@@ -3,7 +3,9 @@ import { useAppSelector, useAppDispatch } from '@/store'
 import { Link, useNavigate } from 'react-router'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
-import { setAccessToken } from '@/reducer/authSlice'
+import {
+	setAccessToken
+} from '@/reducer/authSlice'
 import { toast } from 'sonner'
 import { errorMsg } from '@/typescript/type'
 import UsernameField from './fields/UsernameField'
@@ -41,6 +43,7 @@ const Login = () => {
 				if (response) {
 					toast.success('Login successful !')
 					dispatch(setAccessToken(response.access_token))
+
 					navigate('/dashboard')
 				}
 			} catch (error: unknown) {

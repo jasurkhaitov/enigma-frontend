@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
-import { X } from 'lucide-react'
+import { Loader, X } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 interface MobileNavProps {
 	isOpen: boolean
@@ -22,8 +23,8 @@ export default function MobileNav({
 	onClose,
 	isLoading,
 	isAuthenticated,
-	handleAuthAction,
 }: MobileNavProps) {
+	const navigate = useNavigate()
 	return (
 		<div
 			className={`fixed top-0 right-0 h-full max-w-80 w-full bg-browse-blue z-50 shadow-lg transform transition-transform duration-300 ease-in-out lg:hidden ${
@@ -59,22 +60,46 @@ export default function MobileNav({
 				</ul>
 
 				<div className='mt-auto py-6'>
-					<Button
-						variant={'white'}
-						size={'lg'}
-						className='m-auto w-48'
-						onClick={() => {
-							onClose()
-							handleAuthAction()
-						}}
-						disabled={isLoading}
-					>
-						{isLoading
-							? '...'
-							: isAuthenticated
-							? 'Go to Dashboard'
-							: 'Start Free Trial'}
-					</Button>
+					{isLoading ? (
+						<Button
+							disabled
+							className='flex items-center gap-2 opacity-80 m-auto w-48'
+						>
+							<Loader className='animate-spin h-4 w-4' />
+						</Button>
+					) : isAuthenticated ? (
+						<Button
+							onClick={() => {
+								onClose()
+							}}
+							className='bg-green-600 hover:bg-green-700 text-white transition-all rounded-full m-auto w-48'
+						>
+							Go to Dashboard
+						</Button>
+					) : (
+						<div className='flex p-1 bg-white rounded-md w-full m-auto shadow-sm items-center justify-center'>
+							<Button
+								variant='ghost'
+								className='rounded-md text-center inline w-full px-5 text-gray-800 hover:bg-white transition-all'
+								onClick={() => {
+									onClose()
+									navigate('/login')
+								}}
+							>
+								Log In
+							</Button>
+							<Button
+								className='rounded-md text-center inline w-full px-5 text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 transition-all'
+								onClick={() => {
+									onClose()
+
+									navigate('/register')
+								}}
+							>
+								Sign Up
+							</Button>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

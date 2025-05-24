@@ -18,7 +18,7 @@ const UsernameField = () => {
   return (
     <div className='flex flex-col'>
       <Label htmlFor='username' required>
-        Username
+        Name
       </Label>
       <Tooltip
         text={usernameError}
@@ -29,7 +29,7 @@ const UsernameField = () => {
         <Input
           type='text'
           id='username'
-          placeholder='Enter your username'
+          placeholder='Enter your name'
           value={username}
           onChange={handleUsernameChange}
           onFocus={() => dispatch(setUsernameFocused(true))}

@@ -2,25 +2,23 @@ import { useNavigate } from 'react-router'
 import { Button } from '../ui/button'
 import EmailField from './fields/EmailField'
 import RegisterField from './fields/RegisterField'
-import PasswordField from './fields/PasswordField'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { toast } from 'sonner'
 import { useRegisterMutation } from '@/service/authApi'
 import { Loader } from 'lucide-react'
 import { validateForm } from '@/reducer/authSlice'
+import RegisterPasswordField from './fields/RegisterPasswordField'
 
 const Register = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const {
 		name,
-		username,
 		email,
-		password,
+		regPassword,
 		nameError,
-		usernameError,
 		emailError,
-		passwordError,
+		regPasswordError,
 	} = useAppSelector(state => state.auth)
 
 	const [register, { isLoading }] = useRegisterMutation()
@@ -28,14 +26,12 @@ const Register = () => {
 	const handleRegister = async () => {
 		dispatch(validateForm())
 
-		// Check if any fields are empty
-		if (!name || !username || !email || !password) {
+		if (!name || !email || !regPassword) {
 			toast.error('Please fill all fields')
 			return
 		}
 
-		// Check if there are any validation errors
-		if (nameError || usernameError || emailError || passwordError) {
+		if (nameError || emailError || regPasswordError) {
 			toast.error('Please fix form errors')
 			return
 		}
@@ -43,9 +39,8 @@ const Register = () => {
 		try {
 			const response = await register({
 				name,
-				username,
 				email,
-				password,
+				password: regPassword,
 			}).unwrap()
 			if (response) {
 				toast.success('Account created successfully!')
@@ -61,7 +56,7 @@ const Register = () => {
 		<div className='w-full space-y-6 relative'>
 			<RegisterField />
 			<EmailField />
-			<PasswordField />
+			<RegisterPasswordField />
 			<div className='space-y-2'>
 				<Button
 					variant='default'
